@@ -1,5 +1,3 @@
-'use strict';
-
 const {expect} = require('chai');
 const {STATUS_CODES} = require('http');
 const {Server} = require('../lib/index.js');
@@ -78,9 +76,7 @@ describe('Server', function() {
    */
   describe('#_getHostname()', () => {
     const IncomingMessage = class {
-      /* eslint-disable require-jsdoc */
       constructor(headers = {}) { this.headers = headers; }
-      /* eslint-enable require-jsdoc */
     };
 
     it('it should return "*" if there is no "Host" header in the request', () => {
@@ -127,14 +123,12 @@ describe('Server', function() {
    */
   describe('#_sendStatus()', () => {
     const ServerResponse = class {
-      /* eslint-disable require-jsdoc */
       constructor() {
         this.body = '';
         this.status = 200;
       }
       end(message) { this.body = message; }
       writeHead(status) { this.status = status; }
-      /* eslint-enable require-jsdoc */
     };
 
     it('it should set the response status', () => {

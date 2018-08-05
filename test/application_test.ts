@@ -1,5 +1,3 @@
-'use strict';
-
 const {expect} = require('chai');
 const {Application, Server} = require('../lib/index.js');
 

@@ -1,9 +1,9 @@
 {
-  "source": "lib",
+  "source": "src",
   "destination": "doc/api",
   "excludes": ["index\\.js$"],
   "plugins": [
-    {"name": "esdoc-node"},
+    {"name": "esdoc-typescript-plugin"},
     {"name": "esdoc-standard-plugin", "option": {
       "accessor": {"access": ["public", "protected"]},
       "manual": {"files": ["CHANGELOG.md"]},
