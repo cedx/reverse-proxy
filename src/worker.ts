@@ -1,5 +1,5 @@
-const cluster = require('cluster');
-const {Server} = require('./server.js');
+const cluster from 'cluster');
+const {Server} from './server.js');
 
 /**
  * Contains all public information and methods about a request worker.
@@ -22,7 +22,7 @@ class Worker {
    * The class name.
    * @type {string}
    */
-  get [Symbol.toStringTag]() {
+  get [Symbol.toStringTag](): string {
     return 'Worker';
   }
 
@@ -79,11 +79,8 @@ class Worker {
       return credentials.length ? credentials[0] : '-';
     }
 
-    catch (err) {
+    catch {
       return '-';
     }
   }
 }
-
-// Module exports.
-exports.Worker = Worker;

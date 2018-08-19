@@ -1,6 +1,6 @@
-const {expect} = require('chai');
-const {STATUS_CODES} = require('http');
-const {Server} = require('../lib/index.js');
+import {expect} from 'chai';
+const {STATUS_CODES} from 'http');
+const {Server} from '../lib';
 
 /**
  * @test {Server}

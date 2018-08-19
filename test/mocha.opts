@@ -3,4 +3,5 @@
 --reporter=spec
 --require=source-map-support/register
 --require=ts-node/register
---ui=bdd
+--ui=mocha-typescript
+test/**/*.ts

@@ -1,7 +1,7 @@
-const EventEmitter = require('events');
-const http = require('http');
-const https = require('https');
-const {createProxyServer} = require('http-proxy');
+const EventEmitter from 'events');
+const http from 'http');
+const https from 'https');
+const {createProxyServer} from 'http-proxy');
 
 /**
  * Acts as an intermediary for requests from clients seeking resources from other servers.
@@ -71,7 +71,7 @@ class Server extends EventEmitter {
    * The class name.
    * @type {string}
    */
-  get [Symbol.toStringTag]() {
+  get [Symbol.toStringTag](): string {
     return 'Server';
   }
 
@@ -102,7 +102,7 @@ class Server extends EventEmitter {
   /**
    * Stops the server from accepting new connections. It does nothing if the server is already closed.
    * @return {Promise} Completes when the server is finally closed.
-   * @emits {*} The "close" event.
+   * @event {*} The "close" event.
    */
   async close() {
     return !this.listening ? null : new Promise(resolve => this._httpService.close(() => {
@@ -118,7 +118,7 @@ class Server extends EventEmitter {
    * @param {number} [port] The port that the server should run on.
    * @param {string} [address] The address that the server should run on.
    * @return {Promise<number>} The port that the server is running on.
-   * @emits {*} The "listening" event.
+   * @event {*} The "listening" event.
    */
   async listen(port = this.port, address = this.address) {
     return this.listening ? this.port : new Promise((resolve, reject) => {
@@ -189,7 +189,7 @@ class Server extends EventEmitter {
    * Handles an HTTP request to a target.
    * @param {IncomingMessage} req The request sent by the client.
    * @param {ServerResponse} res The response sent by the server.
-   * @emits {IncomingMessage} The "request" event.
+   * @event {IncomingMessage} The "request" event.
    */
   _onHttpRequest(req, res) {
     this.emit('request', req, res);
@@ -209,7 +209,7 @@ class Server extends EventEmitter {
    * @param {Error} err The emitted error event.
    * @param {IncomingMessage} req The request sent by the client.
    * @param {ServerResponse} res The response sent by the server.
-   * @emits {Error} The "error" event.
+   * @event {Error} The "error" event.
    */
   _onRequestError(err, req, res) {
     this.emit('error', err);
@@ -247,6 +247,3 @@ class Server extends EventEmitter {
     res.end(message);
   }
 }
-
-// Module exports.
-exports.Server = Server;

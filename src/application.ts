@@ -1,14 +1,15 @@
-const cluster = require('cluster');
-const {Console} = require('console');
-const {cpus} = require('os');
-const program = require('commander');
-const {promises} = require('fs');
-const yaml = require('js-yaml');
-const {Writable} = require('stream');
-const {promisify} = require('util');
-const pkg = require('../package.json');
-const {Server} = require('./server.js');
-const {Worker} = require('./worker.js');
+const cluster from 'cluster');
+const {Console} from 'console');
+const {cpus} from 'os');
+const program from 'commander');
+const {promises} from 'fs');
+const yaml from 'js-yaml');
+const {Writable} from 'stream');
+const {promisify} from 'util');
+// @ts-ignore: disable processing of the imported JSON file.
+import * as pkg from '../package.json';
+const {Server} from './server.js');
+const {Worker} from './worker.js');
 
 /**
  * The application singleton.
@@ -62,7 +63,7 @@ class Application {
    * The class name.
    * @type {string}
    */
-  get [Symbol.toStringTag]() {
+  get [Symbol.toStringTag](): string {
     return 'Application';
   }
 
@@ -218,6 +219,3 @@ class Application {
     for (let i = 0; i < workers; i++) cluster.fork().send({action: 'start', params: servers});
   }
 }
-
-// Module exports.
-exports.Application = Application;

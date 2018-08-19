@@ -1,6 +1,6 @@
-const {Application} = require('./application.js');
-const {Worker} = require('./worker.js');
-const {Server} = require('./server.js');
+const {Application} from './application.js');
+const {Worker} from './worker.js');
+const {Server} from './server.js');
 
 module.exports = {
   Application,
