@@ -9,5 +9,7 @@
 
 /*.iml
 /*.js
+/*.yaml
 /*.yml
-/lib/*.map
+/tsconfig.json
+/lib/**/*.map

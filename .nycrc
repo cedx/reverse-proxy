@@ -1,6 +1,5 @@
 {
   "all": true,
-  "cache": true,
   "extension": ".ts",
   "include": ["src/**/*.ts"],
   "report-dir": "var",
