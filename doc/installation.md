@@ -4,16 +4,16 @@
 Before installing **Reverse-Proxy.js**, you need to make sure you have [Node.js](https://nodejs.org) and [npm](https://www.npmjs.com), the Node.js package manager, up and running.
 
 !!! warning
-    Reverse-Proxy.js requires Node.js >= **10.8.0**.
+    Reverse-Proxy.js requires Node.js >= **10.9.0**.
     
 You can verify if you're already good to go with the following commands:
 
 ```shell
 node --version
-# v10.8.0
+# v10.9.0
 
 npm --version
-# 6.1.0
+# 6.2.0
 ```
 
 !!! info
