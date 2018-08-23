@@ -1,9 +1,3 @@
-const {Application} from './application.js');
-const {Worker} from './worker.js');
-const {Server} from './server.js');
-
-module.exports = {
-  Application,
-  Server,
-  Worker
-};
+export * from './application';
+export * from './server';
+export * from './worker';

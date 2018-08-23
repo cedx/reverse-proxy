@@ -1,13 +1,13 @@
 import {expect} from 'chai';
-const {Application, Server} from '../lib';
+import {Application, Server} from '../src';
 
 /**
- * @test {Application}
+ * Tests the features of the `Application` class.
  */
 describe('Application', () => {
 
   /**
-   * @test {Application#debug}
+   * Tests the `Application#debug` property.
    */
   describe('#debug', () => {
     it('should be `false` in production environment', () => {
@@ -22,7 +22,7 @@ describe('Application', () => {
   });
 
   /**
-   * @test {Application#environment}
+   * Tests the `Application#environment` property.
    */
   describe('#environment', () => {
     it('should be "development" if the `NODE_ENV` environment variable is not set', () => {
@@ -37,7 +37,7 @@ describe('Application', () => {
   });
 
   /**
-   * @test {Application#init}
+   * Tests the `Application#init}
    */
   describe('#init()', () => {
     it('should initialize the `servers` property from the command line arguments', async () => {
@@ -63,7 +63,7 @@ describe('Application', () => {
   });
 
   /**
-   * @test {Application._parseConfiguration}
+   * Tests the `Application._parseConfiguration}
    */
   describe('._parseConfiguration()', () => {
     it('should throw an error if the configuration has an invalid format', async () => {

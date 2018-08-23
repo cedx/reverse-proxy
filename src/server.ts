@@ -1,7 +1,7 @@
-const EventEmitter from 'events');
-const http from 'http');
-const https from 'https');
-const {createProxyServer} from 'http-proxy');
+import EventEmitter from 'events');
+import http from 'http');
+import https from 'https');
+import {createProxyServer} from 'http-proxy');
 
 /**
  * Acts as an intermediary for requests from clients seeking resources from other servers.

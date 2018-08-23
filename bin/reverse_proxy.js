@@ -2,7 +2,7 @@
 'use strict';
 
 const cluster = require('cluster');
-const {Application} = require('../lib/index.js');
+const {Application} = require('../lib');
 
 /**
  * Application entry point.

@@ -1,5 +1,5 @@
-const cluster from 'cluster');
-const {Server} from './server.js');
+import cluster from 'cluster';
+import {Server} from './server';
 
 /**
  * Contains all public information and methods about a request worker.

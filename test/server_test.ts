@@ -1,15 +1,15 @@
 import {expect} from 'chai';
-const {STATUS_CODES} from 'http');
-const {Server} from '../lib';
+import {STATUS_CODES} from 'http';
+import {Server} from '../src';
 
 /**
- * @test {Server}
+ * Tests the features of the `Server` class.
  */
 describe('Server', function() {
   this.timeout(10000);
 
   /**
-   * @test {Server#address}
+   * Tests the `Server#address` property.
    */
   describe('#address', () => {
     it('should have an "any IPv4" address as the default address', () => {
@@ -22,7 +22,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#listening}
+   * Tests the `Server#listening` property.
    */
   describe('#listening', () => {
     it('should return whether the server is listening', async () => {
@@ -38,7 +38,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#port}
+   * Tests the `Server#port` property.
    */
   describe('#port', () => {
     it('should have 8080 as the default port', () => {
@@ -51,7 +51,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#routes}
+   * Tests the `Server#routes` property.
    */
   describe('#routes', () => {
     it('should be empty by default', () => {
@@ -72,7 +72,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#_getHostname}
+   * Tests the `Server#_getHostname}
    */
   describe('#_getHostname()', () => {
     const IncomingMessage = class {
@@ -89,7 +89,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#_normalizeRoute}
+   * Tests the `Server#_normalizeRoute}
    */
   describe('#_normalizeRoute()', () => {
     it('it should normalize a port on the local host', () => {
@@ -119,7 +119,7 @@ describe('Server', function() {
   });
 
   /**
-   * @test {Server#_sendStatus}
+   * Tests the `Server#_sendStatus}
    */
   describe('#_sendStatus()', () => {
     const ServerResponse = class {

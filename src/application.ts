@@ -1,15 +1,15 @@
-const cluster from 'cluster');
-const {Console} from 'console');
-const {cpus} from 'os');
-const program from 'commander');
-const {promises} from 'fs');
-const yaml from 'js-yaml');
-const {Writable} from 'stream');
-const {promisify} from 'util');
+import cluster from 'cluster');
+import {Console} from 'console');
+import {cpus} from 'os');
+import program from 'commander');
+import {promises} from 'fs');
+import yaml from 'js-yaml');
+import {Writable} from 'stream');
+import {promisify} from 'util');
 // @ts-ignore: disable processing of the imported JSON file.
 import * as pkg from '../package.json';
-const {Server} from './server.js');
-const {Worker} from './worker.js');
+import {Server} from './server';
+import {Worker} from './worker';
 
 /**
  * The application singleton.
