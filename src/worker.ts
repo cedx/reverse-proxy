@@ -4,23 +4,15 @@ import {Server} from './server';
 /**
  * Contains all public information and methods about a request worker.
  */
-class Worker {
+export class Worker {
 
   /**
-   * Creates a new worker.
+   * The proxy servers managed by this worker.
    */
-  constructor() {
-
-    /**
-     * The proxy servers managed by this worker.
-     * @type {Server[]}
-     */
-    this._servers = [];
-  }
+  private _servers: Server[] = [];
 
   /**
    * The class name.
-   * @type {string}
    */
   get [Symbol.toStringTag](): string {
     return 'Worker';
@@ -28,9 +20,8 @@ class Worker {
 
   /**
    * Stops the worker from accepting new connections.
-   * @return {Promise} Completes when all the servers are closed.
    */
-  stop() {
+  stop(): Promise<void> {
     return Promise.all(this._servers.map(server => server.close()));
   }
 
@@ -39,11 +30,11 @@ class Worker {
    * @param {Object[]} servers The settings of the servers managed by this worker.
    * @return {Promise} Completes when all the servers are listening.
    */
-  start(servers) {
+  start(servers): Promise<void> {
     this._servers = servers.map(options => new Server(options));
 
-    let console = Application.instance.logger;
-    let id = cluster.worker.id;
+    const console = Application.instance.logger;
+    const id = cluster.worker.id;
 
     return Promise.all(this._servers.map(server => server
       .on('close', () => console.log(`#${id}: ${server.address}:${server.port} closed`))
@@ -68,14 +59,14 @@ class Worker {
 
   /**
    * Extracts the user name provided in the specified `Authorization` header.
-   * @param {string} authorization The value of the `Authorization` header.
-   * @return {string} The user name found, otherwise the string `"-"`.
+   * @param authorization The value of the `Authorization` header.
+   * @return The user name found, otherwise the string `"-"`.
    */
-  _extractUserFromRequest(authorization) {
+  _extractUserFromRequest(authorization: string | undefined): string {
     if (typeof authorization != 'string' || !authorization.length) return '-';
 
     try {
-      let credentials = Buffer.from(authorization, 'base64').toString().split(':');
+      const credentials = Buffer.from(authorization, 'base64').toString().split(':');
       return credentials.length ? credentials[0] : '-';
     }
 

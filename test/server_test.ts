@@ -1,32 +1,32 @@
+/* tslint:disable: no-unused-expression */
 import {expect} from 'chai';
 import {STATUS_CODES} from 'http';
+import {suite, test, timeout} from 'mocha-typescript';
 import {Server} from '../src';
 
 /**
  * Tests the features of the `Server` class.
  */
-describe('Server', function() {
-  this.timeout(10000);
+@suite(timeout(15000))
+class ServerTest {
 
   /**
    * Tests the `Server#address` property.
    */
-  describe('#address', () => {
-    it('should have an "any IPv4" address as the default address', () => {
+  @test async testaddress(): Promise<void> {
+    // It should have an "any IPv4" address as the default address.
       expect(new Server().address).to.equal(Server.defaultAddress);
-    });
 
-    it('should have the same host as the specified one', () => {
+    // It should have the same host as the specified one.
       expect(new Server({address: 'localhost'}).address).to.equal('localhost');
-    });
-  });
+  }
 
   /**
    * Tests the `Server#listening` property.
    */
-  describe('#listening', () => {
-    it('should return whether the server is listening', async () => {
-      let server = new Server({address: '127.0.0.1', port: 0});
+  @test async testlistening(): Promise<void> {
+    // It should return whether the server is listening.
+      const server = new Server({address: '127.0.0.1', port: 0});
       expect(server.listening).to.be.false;
 
       await server.listen();
@@ -34,94 +34,81 @@ describe('Server', function() {
 
       await server.close();
       expect(server.listening).to.be.false;
-    });
-  });
+  }
 
   /**
    * Tests the `Server#port` property.
    */
-  describe('#port', () => {
-    it('should have 8080 as the default port', () => {
+  @test async testport(): Promise<void> {
+    // It should have 8080 as the default port.
       expect(new Server().port).to.equal(Server.defaultPort);
-    });
 
-    it('should have the same port as the specified one', () => {
+    // It should have the same port as the specified one.
       expect(new Server({port: 8080}).port).to.equal(8080);
-    });
-  });
+  }
 
   /**
    * Tests the `Server#routes` property.
    */
-  describe('#routes', () => {
-    it('should be empty by default', () => {
+  @test async testroutes(): Promise<void> {
+    // It should be empty by default.
       expect(new Server().routes.size).to.equal(0);
-    });
 
-    it('should create a default route if a target is specified', () => {
-      let routes = new Server({target: 9000}).routes;
+    // It should create a default route if a target is specified.
+      const routes = new Server({target: 9000}).routes;
       expect(routes.size).to.equal(1);
       expect(routes.get('*')).to.be.an('object').and.have.property('uri');
-    });
 
-    it('should normalize the specified targets', () => {
-      let routes = new Server({routes: {'belin.io': 9000}}).routes;
+    // It should normalize the specified targets.
+      const routes = new Server({routes: {'belin.io': 9000}}).routes;
       expect(routes.get('belin.io')).to.be.an('object')
         .and.have.property('uri').that.equal('http://127.0.0.1:9000');
-    });
-  });
+  }
 
   /**
    * Tests the `Server#_getHostname}
    */
-  describe('#_getHostname()', () => {
+  @test async test_getHostname(): Promise<void> {
     const IncomingMessage = class {
       constructor(headers = {}) { this.headers = headers; }
     };
 
-    it('it should return "*" if there is no "Host" header in the request', () => {
+    // It should return "*" if there is no "Host" header in the request.
       expect(new Server()._getHostname(new IncomingMessage)).to.equal('*');
-    });
 
-    it('it should return the "Host" header found in the request, without the port number', () => {
+    // It should return the "Host" header found in the request, without the port number.
       expect(new Server()._getHostname(new IncomingMessage({host: 'belin.io:8080'}))).to.equal('belin.io');
-    });
-  });
+  }
 
   /**
    * Tests the `Server#_normalizeRoute}
    */
-  describe('#_normalizeRoute()', () => {
-    it('it should normalize a port on the local host', () => {
-      expect(new Server()._normalizeRoute(8080)).to.deep.equal({headers: {}, uri: 'http://127.0.0.1:8080'});
-      expect(new Server()._normalizeRoute({uri: 8080})).to.deep.equal({headers: {}, uri: 'http://127.0.0.1:8080'});
-    });
+  @test async test_normalizeRoute(): Promise<void> {
+    // It should normalize a port on the local host.
+    expect(new Server()._normalizeRoute(8080)).to.deep.equal({headers: {}, uri: 'http://127.0.0.1:8080'});
+    expect(new Server()._normalizeRoute({uri: 8080})).to.deep.equal({headers: {}, uri: 'http://127.0.0.1:8080'});
 
-    it('it should normalize an authority', () => {
-      expect(new Server()._normalizeRoute('domain.com:8080')).to.deep.equal({headers: {}, uri: 'http://domain.com:8080'});
-      expect(new Server()._normalizeRoute({uri: 'domain.com:8080'})).to.deep.equal({headers: {}, uri: 'http://domain.com:8080'});
-    });
+    // It should normalize an authority.
+    expect(new Server()._normalizeRoute('domain.com:8080')).to.deep.equal({headers: {}, uri: 'http://domain.com:8080'});
+    expect(new Server()._normalizeRoute({uri: 'domain.com:8080'})).to.deep.equal({headers: {}, uri: 'http://domain.com:8080'});
 
-    it('it should normalize an origin', () => {
-      expect(new Server()._normalizeRoute('https://domain.com:8080')).to.deep.equal({headers: {}, uri: 'https://domain.com:8080'});
-      expect(new Server()._normalizeRoute({uri: 'https://domain.com:8080'})).to.deep.equal({headers: {}, uri: 'https://domain.com:8080'});
-    });
+    // It should normalize an origin.
+    expect(new Server()._normalizeRoute('https://domain.com:8080')).to.deep.equal({headers: {}, uri: 'https://domain.com:8080'});
+    expect(new Server()._normalizeRoute({uri: 'https://domain.com:8080'})).to.deep.equal({headers: {}, uri: 'https://domain.com:8080'});
 
-    it('it should normalize the HTTP headers', () => {
-      let headers = {'X-Header': 'X-Value'};
-      expect(new Server()._normalizeRoute({headers, uri: 'https://domain.com:8080'}))
-        .to.deep.equal({headers: {'x-header': 'X-Value'}, uri: 'https://domain.com:8080'});
-    });
+    // It should normalize the HTTP headers.
+    const headers = {'X-Header': 'X-Value'};
+    expect(new Server()._normalizeRoute({headers, uri: 'https://domain.com:8080'}))
+      .to.deep.equal({headers: {'x-header': 'X-Value'}, uri: 'https://domain.com:8080'});
 
-    it('it should throw an error if the route has an invalid format', () => {
-      expect(() => new Server()._normalizeRoute([8080])).to.throw();
-    });
-  });
+    // It should throw an error if the route has an invalid format.
+    expect(() => new Server()._normalizeRoute([8080])).to.throw();
+  }
 
   /**
    * Tests the `Server#_sendStatus}
    */
-  describe('#_sendStatus()', () => {
+  @test async test_sendStatus(): Promise<void> {
     const ServerResponse = class {
       constructor() {
         this.body = '';
@@ -131,18 +118,16 @@ describe('Server', function() {
       writeHead(status) { this.status = status; }
     };
 
-    it('it should set the response status', () => {
-      let response = new ServerResponse;
-      expect(response.status).to.equal(200);
-      new Server()._sendStatus(response, 404);
-      expect(response.status).to.equal(404);
-    });
+    // It should set the response status.
+    const response = new ServerResponse;
+    expect(response.status).to.equal(200);
+    new Server()._sendStatus(response, 404);
+    expect(response.status).to.equal(404);
 
-    it('it should set the response body', () => {
-      let response = new ServerResponse;
-      expect(response.body).to.be.empty;
-      new Server()._sendStatus(response, 404);
-      expect(response.body).to.equal(STATUS_CODES[404]);
-    });
-  });
-});
+    // It should set the response body.
+    const response = new ServerResponse;
+    expect(response.body).to.be.empty;
+    new Server()._sendStatus(response, 404);
+    expect(response.body).to.equal(STATUS_CODES[404]);
+  }
+}

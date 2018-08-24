@@ -9,7 +9,7 @@ const {Application} = require('../lib');
  * @return {Promise} Completes when the program is terminated.
  */
 async function main() {
-  let id = cluster.isMaster ? 'master' : `worker:${cluster.worker.id}`;
+  const id = cluster.isMaster ? 'master' : `worker:${cluster.worker.id}`;
   process.title = `reverse-proxy/${id}`;
   return new Application().run();
 }

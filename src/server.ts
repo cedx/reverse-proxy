@@ -1,28 +1,22 @@
-import EventEmitter from 'events');
-import http from 'http');
-import https from 'https');
-import {createProxyServer} from 'http-proxy');
+import {EventEmitter} from 'events';
+import * as http from 'http';
+import {createProxyServer} from 'http-proxy';
+import * as https from 'https';
 
 /**
  * Acts as an intermediary for requests from clients seeking resources from other servers.
  */
-class Server extends EventEmitter {
+export class Server extends EventEmitter {
 
   /**
    * The default address that the server is listening on.
-   * @type {string}
    */
-  static get defaultAddress() {
-    return '0.0.0.0';
-  }
+  static readonly defaultAddress: string = '0.0.0.0';
 
   /**
    * The default port that the server is listening on.
-   * @type {number}
    */
-  static get defaultPort() {
-    return 8080;
-  }
+  static readonly defaultPort: number = 8080;
 
   /**
    * Initializes a new instance of the class.
@@ -38,7 +32,7 @@ class Server extends EventEmitter {
     this.routes = new Map;
 
     if (typeof options.routes == 'object' && options.routes)
-      for (let [host, route] of Object.entries(options.routes)) this.routes.set(host, this._normalizeRoute(route));
+      for (const [host, route] of Object.entries(options.routes)) this.routes.set(host, this._normalizeRoute(route));
 
     if (typeof options.target == 'string')
       this.routes.set('*', this._normalizeRoute(options.target));
@@ -69,7 +63,6 @@ class Server extends EventEmitter {
 
   /**
    * The class name.
-   * @type {string}
    */
   get [Symbol.toStringTag](): string {
     return 'Server';
@@ -125,7 +118,7 @@ class Server extends EventEmitter {
       this._proxyService = createProxyServer(this._options.proxy);
       this._proxyService.on('error', this._onRequestError.bind(this));
 
-      let requestHandler = this._onHttpRequest.bind(this);
+      const requestHandler = this._onHttpRequest.bind(this);
       this._httpService = this._options.ssl ? https.createServer(this._options.ssl, requestHandler) : http.createServer(requestHandler);
       this._httpService.on('upgrade', this._onWebSocketRequest.bind(this));
       this._httpService.on('error', err => {
@@ -146,10 +139,10 @@ class Server extends EventEmitter {
    * @return {string} The hostname provided by the specified request, or `*` if the hostname could not be determined.
    */
   _getHostname(req) {
-    let headers = req.headers;
+    const headers = req.headers;
     if (!('host' in headers)) return '*';
 
-    let index = headers.host.indexOf(':');
+    const index = headers.host.indexOf(':');
     return index < 0 ? headers.host : headers.host.substr(0, index);
   }
 
@@ -177,8 +170,8 @@ class Server extends EventEmitter {
 
     if (typeof route.headers != 'object' || !route.headers) route.headers = {};
     else {
-      let map = {};
-      for (let [key, value] of Object.entries(route.headers)) map[key.toLowerCase()] = value;
+      const map = {};
+      for (const [key, value] of Object.entries(route.headers)) map[key.toLowerCase()] = value;
       route.headers = map;
     }
 
@@ -194,11 +187,11 @@ class Server extends EventEmitter {
   _onHttpRequest(req, res) {
     this.emit('request', req, res);
 
-    let hostname = this._getHostname(req);
-    let pattern = this.routes.has(hostname) ? hostname : '*';
+    const hostname = this._getHostname(req);
+    const pattern = this.routes.has(hostname) ? hostname : '*';
     if (!this.routes.has(pattern)) this._sendStatus(res, 404);
     else {
-      let target = this.routes.get(pattern);
+      const target = this.routes.get(pattern);
       Object.assign(req.headers, target.headers);
       this._proxyService.web(req, res, {target: target.uri});
     }
@@ -223,10 +216,10 @@ class Server extends EventEmitter {
    * @param {Buffer} head The first packet of the upgraded stream.
    */
   _onWebSocketRequest(req, socket, head) {
-    let hostname = this._getHostname(req);
-    let pattern = this.routes.has(hostname) ? hostname : '*';
+    const hostname = this._getHostname(req);
+    const pattern = this.routes.has(hostname) ? hostname : '*';
     if (this.routes.has(pattern)) {
-      let target = this.routes.get(pattern);
+      const target = this.routes.get(pattern);
       Object.assign(req.headers, target.headers);
       this._proxyService.ws(req, socket, head, {target: target.uri});
     }
@@ -238,7 +231,7 @@ class Server extends EventEmitter {
    * @param {number} statusCode The HTTP status code to send.
    */
   _sendStatus(res, statusCode) {
-    let message = http.STATUS_CODES[statusCode];
+    const message = http.STATUS_CODES[statusCode];
     res.writeHead(statusCode, {
       'content-length': Buffer.byteLength(message),
       'content-type': 'text/plain; charset=utf-8'
