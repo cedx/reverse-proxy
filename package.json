@@ -20,7 +20,9 @@
   "devDependencies": {
     "@cedx/coveralls": "^8.0.0",
     "@types/chai": "^4.1.4",
-    "@types/node": "^10.7.1",
+    "@types/http-proxy": "^1.16.2",
+    "@types/js-yaml": "^3.11.2",
+    "@types/node": "^10.9.1",
     "chai": "^4.1.2",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
