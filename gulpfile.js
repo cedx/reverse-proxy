@@ -31,9 +31,7 @@ gulp.task('fix', () => _exec('tslint', ['--fix', ...sources]));
 // Perform static analysis of source code.
 gulp.task('lint', () => _exec('tslint', sources));
 
-/**
- * Starts the proxy server.
- */
+// Starts the proxy server.
 gulp.task('serve', done => {
   if ('_server' in global) global._server.kill();
   global._server = fork('bin/reverse_proxy.js', ['--address=localhost', '--target=80'], {stdio: 'inherit'});
