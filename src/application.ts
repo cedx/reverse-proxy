@@ -132,7 +132,7 @@ export class Application {
    * Parses the command line arguments.
    * @param {string[]} args The command line arguments.
    */
-  _parseCommandLineArguments(args: string[]): void {
+  private _parseCommandLineArguments(args: string[]): void {
     const format = {
       asInteger: (value: string) => Number.parseInt(value, 10),
       asIntegerIfNumeric: (value: string) => /^\d+$/.test(value) ? Number.parseInt(value, 10) : value
@@ -155,7 +155,7 @@ export class Application {
    * @param {string} configuration A string specifying the application configuration.
    * @return {Promise<Server[]>} The server instances corresponding to the parsed configuration.
    */
-  async _parseConfiguration(configuration: string): Promise<Server[]> {
+  private async _parseConfiguration(configuration: string): Promise<Server[]> {
     const data = configuration.trim();
     if (!data.length) throw new TypeError('Invalid configuration data');
 
@@ -192,7 +192,7 @@ export class Application {
   /**
    * Starts the request workers.
    */
-  async _startWorkers(): Promise<void> {
+  private async _startWorkers(): Promise<void> {
     const servers = [];
     if (program.target) servers.push({
       address: program.address,

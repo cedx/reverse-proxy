@@ -62,7 +62,7 @@ export class Worker {
    * @param authorization The value of the `Authorization` header.
    * @return The user name found, otherwise the string `"-"`.
    */
-  _extractUserFromRequest(authorization: string | undefined): string {
+  private _extractUserFromRequest(authorization: string | undefined): string {
     if (typeof authorization != 'string' || !authorization.length) return '-';
 
     try {

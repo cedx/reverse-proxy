@@ -22,7 +22,7 @@
     "@types/chai": "^4.1.4",
     "@types/http-proxy": "^1.16.2",
     "@types/js-yaml": "^3.11.2",
-    "@types/node": "^10.9.1",
+    "@types/node": "^10.9.2",
     "chai": "^4.1.2",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
@@ -48,9 +48,9 @@
     "websocket"
   ],
   "scripts": {
-    "coverage": "coveralls var/lcov.info",
-    "prepare": "tsc",
+    "coverage": "gulp coverage",
+    "prepare": "gulp build",
     "start": "gulp watch",
-    "test": "nyc mocha"
+    "test": "gulp test"
   }
 }

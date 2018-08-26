@@ -1,5 +1,6 @@
 import {EventEmitter} from 'events';
 import * as http from 'http';
+import {ServerResponse} from 'http';
 import {createProxyServer} from 'http-proxy';
 import * as https from 'https';
 
@@ -138,7 +139,7 @@ export class Server extends EventEmitter {
    * @param {IncomingMessage} req The request sent by the client.
    * @return {string} The hostname provided by the specified request, or `*` if the hostname could not be determined.
    */
-  _getHostname(req) {
+  private _getHostname(req) {
     const headers = req.headers;
     if (!('host' in headers)) return '*';
 
@@ -152,7 +153,7 @@ export class Server extends EventEmitter {
    * @return {Object} The normalized route.
    * @throws {TypeError} The route has an invalid format.
    */
-  _normalizeRoute(route) {
+  private _normalizeRoute(route) {
     if (typeof route != 'object' || !route) route = {uri: route};
 
     switch (typeof route.uri) {
@@ -184,7 +185,7 @@ export class Server extends EventEmitter {
    * @param {ServerResponse} res The response sent by the server.
    * @event {IncomingMessage} The "request" event.
    */
-  _onHttpRequest(req, res) {
+  private _onHttpRequest(req, res) {
     this.emit('request', req, res);
 
     const hostname = this._getHostname(req);
@@ -204,7 +205,7 @@ export class Server extends EventEmitter {
    * @param {ServerResponse} res The response sent by the server.
    * @event {Error} The "error" event.
    */
-  _onRequestError(err, req, res) {
+  private _onRequestError(err, req, res) {
     this.emit('error', err);
     this._sendStatus(res, 502);
   }
@@ -215,7 +216,7 @@ export class Server extends EventEmitter {
    * @param {Socket} socket The network socket between the server and client.
    * @param {Buffer} head The first packet of the upgraded stream.
    */
-  _onWebSocketRequest(req, socket, head) {
+  private _onWebSocketRequest(req, socket, head) {
     const hostname = this._getHostname(req);
     const pattern = this.routes.has(hostname) ? hostname : '*';
     if (this.routes.has(pattern)) {
@@ -227,11 +228,11 @@ export class Server extends EventEmitter {
 
   /**
    * Sends an HTTP status code and terminates the specified server response.
-   * @param {ServerResponse} res The server response.
-   * @param {number} statusCode The HTTP status code to send.
+   * @param res The server response.
+   * @param statusCode The HTTP status code to send.
    */
-  _sendStatus(res, statusCode) {
-    const message = http.STATUS_CODES[statusCode];
+  private _sendStatus(res: ServerResponse, statusCode: number): void {
+    const message = http.STATUS_CODES[statusCode] as string;
     res.writeHead(statusCode, {
       'content-length': Buffer.byteLength(message),
       'content-type': 'text/plain; charset=utf-8'
@@ -239,4 +240,11 @@ export class Server extends EventEmitter {
 
     res.end(message);
   }
+}
+
+/**
+ * Defines the options of a `Server` instance.
+ */
+export interface ServerOptions {
+
 }
