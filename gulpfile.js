@@ -3,7 +3,7 @@
 const {fork, spawn} = require('child_process');
 const del = require('del');
 const gulp = require('gulp');
-const {normalize} = require('path');
+const {delimiter, normalize, resolve} = require('path');
 
 /**
  * The file patterns providing the list of source files.
@@ -11,37 +11,25 @@ const {normalize} = require('path');
  */
 const sources = ['*.js', 'bin/*.js', 'example/*.ts', 'src/**/*.ts', 'test/**/*.ts'];
 
-/**
- * Builds the project.
- */
-gulp.task('build', () => _exec('node_modules/.bin/tsc'));
+// Build the project.
+gulp.task('build', () => _exec('tsc'));
 
-/**
- * Deletes all generated files and reset any saved state.
- */
+// Delete all generated files and reset any saved state.
 gulp.task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
 
-/**
- * Sends the results of the code coverage.
- */
-gulp.task('coverage', () => _exec('node_modules/.bin/coveralls', ['var/lcov.info']));
+// Send the results of the code coverage.
+gulp.task('coverage', () => _exec('coveralls', ['var/lcov.info']));
 
-/**
- * Builds the documentation.
- */
-gulp.task('doc:api', () => _exec('node_modules/.bin/typedoc'));
+// Build the documentation.
+gulp.task('doc:api', () => _exec('typedoc'));
 gulp.task('doc:web', () => _exec('mkdocs', ['build']));
 gulp.task('doc', gulp.series('doc:api', 'doc:web'));
 
-/**
- * Fixes the coding standards issues.
- */
-gulp.task('fix', () => _exec('node_modules/.bin/tslint', ['--fix', ...sources]));
+// Fix the coding standards issues.
+gulp.task('fix', () => _exec('tslint', ['--fix', ...sources]));
 
-/**
- * Performs static analysis of source code.
- */
-gulp.task('lint', () => _exec('node_modules/.bin/tslint', sources));
+// Perform static analysis of source code.
+gulp.task('lint', () => _exec('tslint', sources));
 
 /**
  * Starts the proxy server.
@@ -52,14 +40,10 @@ gulp.task('serve', done => {
   done();
 });
 
-/**
- * Runs the unit tests.
- */
-gulp.task('test', () => _exec('node_modules/.bin/nyc', [normalize('node_modules/.bin/mocha')]));
+// Run the unit tests.
+gulp.task('test', () => _exec('nyc', [normalize('node_modules/.bin/mocha')]));
 
-/**
- * Upgrades the project to the latest revision.
- */
+// Upgrade the project to the latest revision.
 gulp.task('upgrade', async () => {
   await _exec('git', ['reset', '--hard']);
   await _exec('git', ['fetch', '--all', '--prune']);
@@ -68,17 +52,13 @@ gulp.task('upgrade', async () => {
   return _exec('npm', ['update', '--dev']);
 });
 
-/**
- * Watches for file changes.
- */
+// Watch for file changes.
 gulp.task('watch', () => {
-  gulp.watch(['bin/*.js', 'lib/**/*.js'], {ignoreInitial: false}, gulp.task('serve'));
+  gulp.watch(['bin/*.js', 'src/**/*.ts'], {ignoreInitial: false}, gulp.task('serve'));
   gulp.watch('test/**/*.ts', gulp.task('test'));
 });
 
-/**
- * Runs the default tasks.
- */
+// Run the default tasks.
 gulp.task('default', gulp.task('build'));
 
 /**
@@ -89,7 +69,8 @@ gulp.task('default', gulp.task('build'));
  * @return {Promise} Completes when the command is finally terminated.
  */
 function _exec(command, args = [], options = {shell: true, stdio: 'inherit'}) {
-  return new Promise((resolve, reject) => spawn(normalize(command), args, options)
-    .on('close', code => code ? reject(new Error(`${command}: ${code}`)) : resolve())
+  if (!process.env.PATH.includes(normalize('node_modules/.bin'))) process.env.PATH = `${resolve('node_modules/.bin')}${delimiter}${process.env.PATH}`;
+  return new Promise((fulfill, reject) => spawn(normalize(command), args, options)
+    .on('close', code => code ? reject(new Error(`${command}: ${code}`)) : fulfill())
   );
 }
