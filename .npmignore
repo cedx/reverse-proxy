@@ -1,7 +1,5 @@
 /.*
 
-/doc/
-/example/
 /src/
 /test/
 /var/
@@ -11,5 +9,5 @@
 /*.js
 /*.yaml
 /*.yml
-/tsconfig.json
 /lib/**/*.map
+/tsconfig.json

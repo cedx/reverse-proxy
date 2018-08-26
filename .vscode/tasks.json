@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "problemMatcher": [],
+      "task": "build",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "clean",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "doc",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "fix",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "lint",
+      "type": "gulp"
+    },
+    {
+      "group": {"isDefault": true, "kind": "build"},
+      "problemMatcher": [],
+      "task": "test",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "upgrade",
+      "type": "gulp"
+    },
+    {
+      "problemMatcher": [],
+      "task": "watch",
+      "type": "gulp"
+    }
+  ]
+}
