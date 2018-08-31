@@ -17,7 +17,7 @@ gulp.task('build', () => _exec('tsc'));
 // Delete all generated files and reset any saved state.
 gulp.task('clean', () => del(['.nyc_output', 'doc/api', 'lib', 'var/**/*', 'web']));
 
-// Send the results of the code coverage.
+// Upload the results of the code coverage.
 gulp.task('coverage', () => _exec('coveralls', ['var/lcov.info']));
 
 // Build the documentation.
@@ -28,7 +28,7 @@ gulp.task('doc', gulp.series('doc:api', 'doc:web'));
 // Fix the coding standards issues.
 gulp.task('fix', () => _exec('tslint', ['--fix', ...sources]));
 
-// Perform static analysis of source code.
+// Perform the static analysis of source code.
 gulp.task('lint', () => _exec('tslint', sources));
 
 // Starts the proxy server.
@@ -38,7 +38,7 @@ gulp.task('serve', done => {
   done();
 });
 
-// Run the unit tests.
+// Run the test suites.
 gulp.task('test', () => _exec('nyc', [normalize('node_modules/.bin/mocha')]));
 
 // Upgrade the project to the latest revision.
