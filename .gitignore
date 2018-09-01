@@ -1,6 +1,8 @@
 /.*/
 !/.vscode/
 
+/doc/about/changelog.md
+/doc/about/license.md
 /doc/api/
 /lib/
 /node_modules/

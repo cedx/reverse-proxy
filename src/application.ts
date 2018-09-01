@@ -6,8 +6,6 @@ import * as yaml from 'js-yaml';
 import {cpus} from 'os';
 import {Writable} from 'stream';
 
-// @ts-ignore: disable processing of the imported JSON file.
-import * as pkg from '../package.json';
 import {JsonMap} from './map';
 import {Server} from './server';
 import {Worker} from './worker';
@@ -39,6 +37,11 @@ export class Application {
    */
   static readonly logFormat: string =
     ':req[host] :remote-addr - :remote-user [:date[iso]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"';
+
+  /**
+   * The version number of the package.
+   */
+  static readonly version: string = '10.0.0';
 
   /**
    * The message logger.
@@ -140,7 +143,7 @@ export class Application {
 
     program.name('reverse-proxy')
       .description('Simple reverse proxy server supporting WebSockets.')
-      .version(pkg.version, '-v, --version')
+      .version(Application.version, '-v, --version')
       .option('-a, --address <address>', 'address that the reverse proxy should run on', Server.defaultAddress)
       .option('-p, --port <port>', 'port that the reverse proxy should run on', format.asInteger, Server.defaultPort)
       .option('-t, --target <target>', 'location of the server the proxy will target', format.asIntegerIfNumeric)
