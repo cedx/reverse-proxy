@@ -81,8 +81,8 @@ gulp.task('upgrade', async () => {
 /**
  * Updates the version number contained in the sources.
  */
-gulp.task('version', () => gulp.src('bin/reverse_proxy.js')
-  .pipe(replace(/const version = '\d+(\.\d+){2}'/g, `const version = '${pkg.version}'`))
+gulp.task('version', () => gulp.src('src/application.ts')
+  .pipe(replace(/readonly version: string = '\d+(\.\d+){2}'/g, `readonly version: string = '${pkg.version}'`))
   .pipe(gulp.dest('bin'))
 );
 
@@ -97,7 +97,7 @@ gulp.task('watch', () => {
 /**
  * Runs the default tasks.
  */
-gulp.task('default', gulp.series('build', 'version'));
+gulp.task('default', gulp.series('version', 'build'));
 
 /**
  * Spawns a new process using the specified command.
