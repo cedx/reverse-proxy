@@ -83,7 +83,7 @@ gulp.task('upgrade', async () => {
  */
 gulp.task('version', () => gulp.src('src/application.ts')
   .pipe(replace(/readonly version: string = '\d+(\.\d+){2}'/g, `readonly version: string = '${pkg.version}'`))
-  .pipe(gulp.dest('bin'))
+  .pipe(gulp.dest('src'))
 );
 
 /**
