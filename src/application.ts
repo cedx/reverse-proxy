@@ -133,7 +133,7 @@ export class Application {
 
   /**
    * Parses the command line arguments.
-   * @param {string[]} args The command line arguments.
+   * @param args The command line arguments.
    */
   private _parseCommandLineArguments(args: string[]): void {
     const format = {

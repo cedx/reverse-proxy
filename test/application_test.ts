@@ -11,7 +11,7 @@ import {Application, Server} from '../src';
   /**
    * Tests the `Application#debug` property.
    */
-  @test testDebug(): Promise<void> {
+  @test testDebug(): void {
     // It should be `false` in production environment', () => {
     process.env.NODE_ENV = 'production';
     expect(new Application().debug).to.be.false;
@@ -24,7 +24,7 @@ import {Application, Server} from '../src';
   /**
    * Tests the `Application#environment` property.
    */
-  @test testEnvironment(): Promise<void> {
+  @test testEnvironment(): void {
     // It should be "development" if the `NODE_ENV` environment variable is not set', () => {
     delete process.env.NODE_ENV;
     expect(new Application().environment).to.equal('development');
@@ -39,19 +39,19 @@ import {Application, Server} from '../src';
    */
   @test async testInit(): Promise<void> {
     // It should initialize the `servers` property from the command line arguments.
-    const app = new Application;
+    let app = new Application;
     await app.init({port: 80, target: 3000});
     expect(app.servers).to.be.an('array').and.have.lengthOf(1);
     expect(app.servers[0].port).to.equal(80);
 
     // It should initialize the `servers` property from the JSON configuration.
-    const app = new Application;
+    app = new Application;
     await app.init({config: `${__dirname}/fixtures/config.json`});
     expect(app.servers).to.be.an('array').and.have.lengthOf(1);
     expect(app.servers[0].port).to.equal(80);
 
     // It should initialize the `servers` property from the YAML configuration.
-    const app = new Application;
+    app = new Application;
     await app.init({config: `${__dirname}/fixtures/config.yaml`});
     expect(app.servers).to.be.an('array').and.have.lengthOf(1);
     expect(app.servers[0].port).to.equal(80);
@@ -92,13 +92,13 @@ import {Application, Server} from '../src';
     }
 
     // It should completes with an array if the parsed JSON configuration is valid.
-    const config = await Application._parseConfig('{"port": 80, "target": 3000}');
+    let config = await Application._parseConfig('{"port": 80, "target": 3000}');
     expect(config).to.be.an('array').and.have.lengthOf(1);
     expect(config[0]).to.be.instanceof(Server);
     expect(config[0].port).to.equal(80);
 
     // It should completes with an array if the parsed YAML configuration is valid.
-    const config = await Application._parseConfig('port: 80\ntarget: 3000');
+    config = await Application._parseConfig('port: 80\ntarget: 3000');
     expect(config).to.be.an('array').and.have.lengthOf(1);
     expect(config[0]).to.be.instanceof(Server);
     expect(config[0].port).to.equal(80);
@@ -112,7 +112,7 @@ import {Application, Server} from '../src';
       }
     }`;
 
-    const config = await Application._parseConfig(settings);
+    config = await Application._parseConfig(settings);
     expect(config).to.be.an('array').and.have.lengthOf(1);
     expect(config[0]).to.be.instanceof(Server);
 
