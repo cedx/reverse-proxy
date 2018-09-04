@@ -15,7 +15,7 @@ async function main() {
 }
 
 // Start the application.
-if (module === require.main) main().catch(err => {
+main().catch(err => {
   console.error(err);
   process.exitCode = 1;
 });
