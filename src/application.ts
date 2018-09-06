@@ -78,7 +78,7 @@ export class Application {
 
   /**
    * Terminates the application.
-   * @param {number} [status] The exit status.
+   * @param status The exit status.
    */
   end(status: number = 0): void {
     let timeout: NodeJS.Timer;
@@ -97,7 +97,7 @@ export class Application {
 
   /**
    * Initializes the application.
-   * @param {Object} [args] The command line arguments.
+   * @param args The command line arguments.
    */
   async init(args = {}) { // TODO typings
     if (typeof args.config == 'string') this.servers = await Application._parseConfiguration(await promises.readFile(args.config, 'utf8'));
@@ -110,7 +110,7 @@ export class Application {
 
   /**
    * Runs the application.
-   * @param {string[]} [args] The command line arguments.
+   * @param args The command line arguments.
    */
   async run(args: string[] = process.argv): Promise<void> {
     if (cluster.isWorker) {

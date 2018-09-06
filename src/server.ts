@@ -2,10 +2,10 @@ import {EventEmitter} from 'events';
 import * as http from 'http';
 import * as httpProxy from 'http-proxy';
 import * as https from 'https';
-
 import {AddressInfo, Socket} from 'net';
-import {JsonMap, StringMap} from './map';
-import {Route} from './route';
+
+import {StringMap} from './map';
+import {Route, Target} from './route';
 
 /**
  * Acts as an intermediary for requests from clients seeking resources from other servers.
@@ -23,29 +23,25 @@ export class Server extends EventEmitter {
   static readonly defaultPort: number = 8080;
 
   /**
-   * TODO Emitted...
-   * An event that is triggered when
+   * An event that is emitted when the server closes.
    * @event close
    */
   static readonly eventClose: string = 'close';
 
   /**
-   * TODO Emitted...
-   * An event that is triggered when
+   * An event that is emitted when an error occurs.
    * @event error
    */
   static readonly eventError: string = 'error';
 
   /**
-   * TODO Emitted...
-   * An event that is triggered when
+   * An event that is emitted when the server has been bound.
    * @event listening
    */
   static readonly eventListening: string = 'listening';
 
   /**
-   * TODO Emitted...
-   * An event that is triggered when
+   * An event that is emitted each time there is an HTTP request.
    * @event request
    */
   static readonly eventRequest: string = 'request';
@@ -53,7 +49,12 @@ export class Server extends EventEmitter {
   /**
    * The routing table.
    */
-  routes = new Map<string, Route>();
+  readonly routes = new Map<string, Route>();
+
+  /**
+   * The address that the server is listening on.
+   */
+  private readonly _address: string;
 
   /**
    * The underlying HTTP(S) service listening for requests.
@@ -61,9 +62,14 @@ export class Server extends EventEmitter {
   private _httpService: http.Server | https.Server | null = null;
 
   /**
-   * The server settings.
+   * The port that the server is listening on.
    */
-  private _options: ServerOptions;
+  private readonly _port: number;
+
+  /**
+   * The settings of the underlying proxy module.
+   */
+  private readonly _proxyOptions?: httpProxy.ServerOptions;
 
   /**
    * The underlying proxy service providing custom application logic.
@@ -71,24 +77,25 @@ export class Server extends EventEmitter {
   private _proxyService: httpProxy | null = null;
 
   /**
-   * Initializes a new instance of the class.
+   * The settings of the underlying SSL module.
+   */
+  private readonly _sslOptions?: https.ServerOptions;
+
+  /**
+   * Creates a new reverse proxy.
    * @param options An object specifying values used to initialize this instance.
    */
   constructor(options: Partial<ServerOptions> = {}) {
     super();
+    const {address = '', port = -1, routes = {}, proxy, ssl, target} = options;
 
-    if (typeof options.routes == 'object' && options.routes)
-      for (const [host, route] of Object.entries(options.routes)) this.routes.set(host, this._normalizeRoute(route));
+    this._address = address.length ? address : Server.defaultAddress;
+    this._port = port >= 0 && Number.isInteger(port) ? port : Server.defaultPort;
+    this._proxyOptions = proxy;
+    this._sslOptions = ssl;
 
-    if (typeof options.target == 'string')
-      this.routes.set('*', this._normalizeRoute(options.target));
-
-    this._options = {
-      address: typeof options.address == 'string' ? options.address : Server.defaultAddress,
-      port: Number.isInteger(options.port) ? Math.max(0, options.port) : Server.defaultPort,
-      proxy: typeof options.proxy == 'object' && options.proxy ? options.proxy : null,
-      ssl: typeof options.ssl == 'object' && options.ssl ? options.ssl : null
-    };
+    for (const [host, route] of Object.entries(routes)) this.routes.set(host.toLowerCase(), Route.from(route));
+    if (target != undefined) this.routes.set('*', Route.from(target));
   }
 
   /**
@@ -102,7 +109,7 @@ export class Server extends EventEmitter {
    * The address that the server is listening on.
    */
   get address(): string {
-    return this.listening ? (this._httpService!.address() as AddressInfo).address : this._options.address;
+    return this.listening ? (this._httpService!.address() as AddressInfo).address : this._address;
   }
 
   /**
@@ -116,7 +123,7 @@ export class Server extends EventEmitter {
    * The port that the server is listening on.
    */
   get port(): number {
-    return this.listening ? (this._httpService!.address() as AddressInfo).port : this._options.port;
+    return this.listening ? (this._httpService!.address() as AddressInfo).port : this._port;
   }
 
   /**
@@ -140,12 +147,12 @@ export class Server extends EventEmitter {
    */
   listen(port: number = this.port, address: string = this.address): Promise<number> {
     return this.listening ? Promise.resolve(this.port) : new Promise((resolve, reject) => {
-      this._proxyService = httpProxy.createProxyServer(this._options.proxy);
-      this._proxyService.on('error', this._onRequestError.bind(this));
+      this._proxyService = httpProxy.createProxyServer(this._proxyOptions);
+      this._proxyService.on('error', (err, req, res) => this._onRequestError(err, req, res));
 
-      const requestHandler = this._onHttpRequest.bind(this);
-      this._httpService = this._options.ssl ? https.createServer(this._options.ssl, requestHandler) : http.createServer(requestHandler);
-      this._httpService.on('upgrade', this._onWebSocketRequest.bind(this));
+      const requestHandler = (req: http.IncomingMessage, res: http.ServerResponse) => this._onHttpRequest(req, res);
+      this._httpService = this._sslOptions ? https.createServer(this._sslOptions, requestHandler) : http.createServer(requestHandler);
+      this._httpService.on('upgrade', (req, socket, head) => this._onWebSocketRequest(req, socket, head));
       this._httpService.on('error', err => {
         this.emit(Server.eventError, err);
         if (err.code == 'EADDRINUSE') reject(err);
@@ -172,35 +179,15 @@ export class Server extends EventEmitter {
   }
 
   /**
-   * Normalizes the specified route.
-   * @param route The route to normalize.
-   * @return The normalized route.
-   * @throws The route has an invalid format.
+   * Merges the HTTP headers of the specified route with the headers of the given request.
+   * @param req The request sent by the client.
+   * @param route The route activated by the request.
+   * @return The merged headers.
    */
-  private _normalizeRoute(route: number | string | JsonMap): JsonMap /* TODO: Route interface */ {
-    if (typeof route != 'object' || !route) route = {uri: route};
-
-    switch (typeof route.uri) {
-      case 'number':
-        route.uri = `http://127.0.0.1:${route.uri}`;
-        break;
-
-      case 'string':
-        if (!/^https?:/i.test(route.uri)) route.uri = `http://${route.uri}`;
-        break;
-
-      default:
-        throw new TypeError('The route has an invalid format.');
-    }
-
-    if (typeof route.headers != 'object' || !route.headers) route.headers = {};
-    else {
-      const map: StringMap = {};
-      for (const [key, value] of Object.entries(route.headers)) map[key.toLowerCase()] = value;
-      route.headers = map;
-    }
-
-    return route;
+  private _mergeHeaders(req: http.IncomingMessage, route: Route): StringMap<string> {
+    const _headers: StringMap<string> = {};
+    for (const [key, value] of route.headers.entries()) _headers[key] = value;
+    return Object.assign(req.headers, _headers);
   }
 
   /**
@@ -215,9 +202,9 @@ export class Server extends EventEmitter {
     const pattern = this.routes.has(hostname) ? hostname : '*';
     if (!this.routes.has(pattern)) this._sendStatus(res, 404);
     else {
-      const target = this.routes.get(pattern);
-      Object.assign(req.headers, target.headers);
-      this._proxyService!.web(req, res, {target: target.uri});
+      const route = this.routes.get(pattern)!;
+      this._mergeHeaders(req, route);
+      this._proxyService!.web(req, res, {target: route.uri.href});
     }
   }
 
@@ -242,9 +229,9 @@ export class Server extends EventEmitter {
     const hostname = this._getHostname(req);
     const pattern = this.routes.has(hostname) ? hostname : '*';
     if (this.routes.has(pattern)) {
-      const target = this.routes.get(pattern);
-      Object.assign(req.headers, target.headers);
-      this._proxyService!.ws(req, socket, head, {target: target.uri});
+      const route = this.routes.get(pattern)!;
+      this._mergeHeaders(req, route);
+      this._proxyService!.ws(req, socket, head, {target: route.uri.href});
     }
   }
 
@@ -254,7 +241,7 @@ export class Server extends EventEmitter {
    * @param statusCode The HTTP status code to send.
    */
   private _sendStatus(res: http.ServerResponse, statusCode: number): void {
-    const message = http.STATUS_CODES[statusCode] as string;
+    const message = http.STATUS_CODES[statusCode]!;
     res.writeHead(statusCode, {
       'content-length': Buffer.byteLength(message),
       'content-type': 'text/plain; charset=utf-8'
@@ -282,10 +269,20 @@ export interface ServerOptions {
   /**
    * The settings of the underlying proxy module.
    */
-  proxy: httpProxy.ServerOptions | undefined;
+  proxy: httpProxy.ServerOptions;
+
+  /**
+   * The route table.
+   */
+  routes: StringMap<number | string | Target>;
 
   /**
    * The settings of the underlying SSL module.
    */
-  ssl: JsonMap | undefined;
+  ssl: https.ServerOptions;
+
+  /**
+   * The default target server.
+   */
+  target: number | string | Target;
 }

@@ -1,11 +1,6 @@
 import {StringMap} from './map';
 
 /**
- * Represents a routing table.
- */
-export type Routes = StringMap<number | string | Target>;
-
-/**
  * A user defined route for a server.
  */
 export class Route {
@@ -15,7 +10,7 @@ export class Route {
    * @param uri The URL of the target server.
    * @param headers The HTTP headers to add to incoming requests.
    */
-  constructor(public uri: URL, public headers: Map<string, string> = new Map) {}
+  constructor(readonly uri: URL, readonly headers: Map<string, string> = new Map) {}
 
   /**
    * Creates a new route from the specified definition.
@@ -27,7 +22,16 @@ export class Route {
 
     const headers = new Map<string, string>();
     for (const [key, value] of Object.entries(definition.headers ? definition.headers : {})) headers.set(key.toLowerCase(), value);
-    return new this(new URL(typeof definition.uri == 'number' ? `http://127.0.0.1:${definition.uri}` : definition.uri), headers);
+
+    const uri = typeof definition.uri == 'number' ? `http://127.0.0.1:${definition.uri}` : definition.uri;
+    return new this(new URL(/^https?:/i.test(uri) ? uri : `http://${uri}`), headers);
+  }
+
+  /**
+   * The class name.
+   */
+  get [Symbol.toStringTag](): string {
+    return 'Route';
   }
 }
 
@@ -39,7 +43,7 @@ export interface Target {
   /**
    * The HTTP headers to add to incoming requests.
    */
-  headers: StringMap<string> | undefined;
+  headers?: StringMap<string>;
 
   /**
    * The URL of the target server.
