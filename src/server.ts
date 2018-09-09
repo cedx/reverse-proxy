@@ -172,7 +172,7 @@ export class Server extends EventEmitter {
    */
   private _getHostname(req: http.IncomingMessage): string {
     const host = req.headers.host;
-    if (host == undefined) return '*';
+    if (typeof host == 'undefined') return '*';
 
     const index = host.indexOf(':');
     return index < 0 ? host : host.substr(0, index);
