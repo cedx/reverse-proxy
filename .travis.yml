@@ -1,9 +1,15 @@
+dart: [stable]
 dist: trusty
-language: node_js
-node_js: [10, 11]
+language: dart
 notifications: {email: false}
 sudo: false
 
-install: npm install
-script: npm test
-after_success: npm run coverage
+install:
+- nvm install 11
+- node --version
+- npm --version
+- npm install
+- pub get
+
+script: pub run grinder test
+after_success: pub run coveralls var/lcov.info

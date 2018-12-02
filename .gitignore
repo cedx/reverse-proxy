@@ -1,8 +1,8 @@
 /.*/
 !/.vscode/
 
+/build/
 /doc/api/
-/lib/
 /node_modules/
 /var/
 /web/
@@ -10,7 +10,9 @@
 /*.code-workspace
 /*.iml
 /**/.DS_Store
+/.packages
 /npm-debug.log
 /package-lock.json
+/pubspec.lock
 /doc/about/changelog.md
 /doc/about/license.md

@@ -1,7 +1,0 @@
-{
-  "all": true,
-  "extension": ".ts",
-  "include": ["src/**/*.ts"],
-  "report-dir": "var",
-  "reporter": ["lcovonly"]
-}
