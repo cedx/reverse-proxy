@@ -1,11 +1,16 @@
 import 'package:grinder/grinder.dart';
-import 'package:nodejs_interop/globals.dart';
+import 'package:nodejs_interop/build.dart';
 
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
 
 @DefaultTask('Builds the project')
-void build() => Pub.run('build_runner', arguments: ['build', '--delete-conflicting-outputs']);
+Future<void> build() async {
+  Pub.run('build_runner', arguments: ['build', '--delete-conflicting-outputs']);
+  Dart2js.compile(joinFile(binDir, ['reverse_proxy.dart']), minify: true);
+  final output = joinFile(binDir, ['reverse_proxy.js']);
+  return output.writeAsString('${getPreamble(minified: true, shebang: true)}\n${await output.readAsString()}');
+}
 
 @Task('Deletes all generated files and reset any saved state')
 void clean() {
@@ -16,13 +21,6 @@ void clean() {
 
 @Task('Uploads the results of the code coverage')
 void coverage() => Pub.run('coveralls', arguments: const ['var/lcov.info']);
-
-@Task('Builds a redistributable package')
-Future<void> dist() async {
-  Dart2js.compile(joinFile(binDir, ['reverse_proxy.dart']), minify: true);
-  final output = joinFile(binDir, ['reverse_proxy.js']);
-  return output.writeAsString('${getPreamble(minified: true)}\n${await output.readAsString()}');
-}
 
 @Task('Builds the documentation')
 Future<void> doc() async {
