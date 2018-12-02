@@ -1,13 +1,13 @@
-site_name: Reverse-Proxy.js
+site_name: Reverse Proxy
 site_description: Simple reverse proxy server supporting WebSockets, implemented in TypeScript.
 site_author: Cédric Belin - cedric@belin.io
-site_url: https://dev.belin.io/reverse-proxy.js
+site_url: https://dev.belin.io/reverse-proxy
 
 docs_dir: doc
 site_dir: web
 
 repo_name: GitHub
-repo_url: https://github.com/cedx/reverse-proxy.js
+repo_url: https://git.belin.io/cedx/reverse-proxy
 edit_uri: ''
 
 copyright: Copyright &copy; 2014 - 2018 Cédric Belin
@@ -25,8 +25,9 @@ extra:
 markdown_extensions:
 - admonition
 - codehilite
+- meta
 
-pages:
+nav:
 - Overview: index.md
 - Installation: installation.md
 - Usage:

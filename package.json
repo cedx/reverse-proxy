@@ -1,13 +1,11 @@
 {
   "author": "Cédric Belin <cedric@belin.io>",
-  "bugs": "https://github.com/cedx/reverse-proxy.js/issues",
+  "bugs": "https://github.com/cedx/reverse-proxy/issues",
   "description": "Simple reverse proxy server supporting WebSockets.",
-  "homepage": "https://dev.belin.io/reverse-proxy.js",
+  "homepage": "https://dev.belin.io/reverse-proxy",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "./bin/reverse_proxy.js",
   "name": "@cedx/reverse-proxy",
-  "repository": "cedx/reverse-proxy.js",
-  "types": "./lib/index.d.ts",
   "version": "10.0.0",
   "bin": {
     "reverse-proxy": "./bin/reverse_proxy.js"
@@ -17,27 +15,8 @@
     "http-proxy": "^1.17.0",
     "js-yaml": "^3.12.0"
   },
-  "devDependencies": {
-    "@cedx/coveralls": "^8.1.0",
-    "@types/chai": "^4.1.7",
-    "@types/http-proxy": "^1.16.2",
-    "@types/js-yaml": "^3.11.2",
-    "@types/node": "^10.12.0",
-    "chai": "^4.2.0",
-    "del": "^3.0.0",
-    "gulp": "^4.0.0",
-    "gulp-replace": "^1.0.0",
-    "mocha": "^5.2.0",
-    "mocha-typescript": "^1.1.17",
-    "nyc": "^13.1.0",
-    "source-map-support": "^0.5.8",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "typedoc": "^0.13.0",
-    "typescript": "^3.1.3"
-  },
   "engines": {
-    "node": ">=10.13.0",
+    "node": ">=10.14.0",
     "npm": ">=6.4.0"
   },
   "keywords": [
@@ -48,10 +27,8 @@
     "server",
     "websocket"
   ],
-  "scripts": {
-    "coverage": "gulp coverage",
-    "prepare": "gulp build",
-    "start": "gulp watch",
-    "test": "gulp test"
+  "repository": {
+    "type": "git",
+    "url": "https://git.belin.io/cedx/reverse-proxy.git"
   }
 }
