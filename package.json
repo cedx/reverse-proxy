@@ -7,7 +7,7 @@
   "name": "@cedx/reverse-proxy",
   "version": "10.1.0",
   "bin": {
-    "reverse-proxy": "./bin/reverse_proxy.js"
+    "reverse_proxy": "./bin/reverse_proxy.js"
   },
   "dependencies": {
     "http-proxy": "^1.17.0"

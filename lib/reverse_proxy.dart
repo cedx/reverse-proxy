@@ -10,7 +10,7 @@ import 'src/version.dart';
 final String _usage = (StringBuffer()
   ..writeln('Simple reverse proxy server supporting WebSockets.')
   ..writeln()
-  ..writeln('Usage: reverse-proxy [options]')
+  ..writeln('Usage: reverse_proxy [options]')
   ..writeln()
   ..writeln('Options:')
   ..write(argParser.usage))
@@ -42,7 +42,7 @@ void main() {
 
   // Run the program.
   final id = cluster.isMaster ? 'master' : 'worker:${cluster.worker.id}';
-  process.title = 'reverse-proxy/$id';
+  process.title = 'reverse_proxy/$id';
   print(process.title);
   // TODO(cedx): return Application().run();
 }

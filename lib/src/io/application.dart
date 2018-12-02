@@ -83,7 +83,7 @@ class Application {
       asIntegerIfNumeric: (value: string) => /^\d+$/.test(value) ? Number.parseInt(value, 10) : value
     };
 
-    program.name('reverse-proxy')
+    program.name('reverse_proxy')
       .option('-a, --address <address>', 'address that the reverse proxy should run on', Server.defaultAddress)
       .option('-p, --port <port>', 'port that the reverse proxy should run on', format.asInteger, Server.defaultPort)
       .option('-t, --target <target>', 'location of the server the proxy will target', format.asIntegerIfNumeric)

@@ -10,6 +10,7 @@ Simple reverse proxy server supporting WebSockets, implemented in [Dart](https:/
 ## Development
 - [Git repository](https://git.belin.io/cedx/reverse-proxy)
 - [npm package](https://www.npmjs.com/package/@cedx/reverse-proxy)
+- [Pub package](https://pub.dartlang.org/packages/reverse_proxy)
 - [Submit an issue](https://github.com/cedx/reverse-proxy/issues)
 
 ## License

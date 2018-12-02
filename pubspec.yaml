@@ -10,7 +10,7 @@ environment:
   sdk: '>=2.1.0 <3.0.0'
 
 executables:
-  reverse-proxy: reverse_proxy
+  reverse_proxy: reverse_proxy
 
 dependencies:
   build_cli_annotations: ^1.0.1

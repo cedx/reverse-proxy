@@ -31,9 +31,9 @@ npm install --global @cedx/reverse-proxy
 !!! tip
     Consider adding the [`npm install --global`](https://docs.npmjs.com/files/folders) executables directory to your system path.
 
-Now you should be able to use the `reverse-proxy` executable:
+Now you should be able to use the `reverse_proxy` executable:
 
 ```shell
-reverse-proxy --version
+reverse_proxy --version
 # 10.0.0
 ```

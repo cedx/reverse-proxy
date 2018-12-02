@@ -10,14 +10,13 @@ final String _environment = Platform.environment['NODE_ENV'] ?? const String.fro
 Future<void> main(List<String> args) => grind(args);
 
 @DefaultTask('Builds the project')
+@Depends(js)
 Future<void> build() async {
-  final debug = _environment == 'development' || _environment == 'test';
-  final output = joinFile(binDir, ['reverse_proxy.js']);
-
-  Pub.run('build_runner', arguments: ['build', '--delete-conflicting-outputs']);
-  Dart2js.compile(joinFile(libDir, ['reverse_proxy.dart']), minify: !debug, outFile: output);
-  await output.writeAsString('${getPreamble(minified: !debug, shebang: true)}\n${await output.readAsString()}');
-  if (!Platform.isWindows) run('chmod', arguments: ['+x', output.path]);
+  final file = getFile('package.json');
+  return file.writeAsString((await file.readAsString()).replaceAll(
+    RegExp(r'"version": "10(\.\d+){2}"'),
+    '"version": "10.${packageVersion.split('.').take(2).join('.')}"'
+  ));
 }
 
 @Task('Deletes all generated files and reset any saved state')
@@ -42,6 +41,17 @@ Future<void> doc() async {
 @Task('Fixes the coding standards issues')
 void fix() => DartFmt.format(existingSourceDirs, lineLength: 200);
 
+@Task('Builds the JavaScript sources')
+Future<void> js() async {
+  final debug = _environment == 'development' || _environment == 'test';
+  final output = joinFile(binDir, ['reverse_proxy.js']);
+
+  Pub.run('build_runner', arguments: ['build', '--delete-conflicting-outputs']);
+  Dart2js.compile(joinFile(libDir, ['reverse_proxy.dart']), minify: !debug, outFile: output);
+  await output.writeAsString('${getPreamble(minified: !debug, shebang: true)}\n${await output.readAsString()}');
+  if (!Platform.isWindows) run('chmod', arguments: ['+x', output.path]);
+}
+
 @Task('Performs the static analysis of source code')
 void lint() => Analyzer.analyze(existingSourceDirs);
 
@@ -56,15 +66,6 @@ void upgrade() {
   run('npm', arguments: ['install']);
   run('npm', arguments: ['update']);
   Pub.upgrade();
-}
-
-@Task('Updates the version number contained in the sources')
-Future<void> version() async {
-  final file = getFile('package.json');
-  return file.writeAsString((await file.readAsString()).replaceAll(
-    RegExp(r'"version": "10(\.\d+){2}"'),
-    '"version": "10.${packageVersion.split('.').skip(1).join('.')}"'
-  ));
 }
 
 @Task('Watches for file changes')
