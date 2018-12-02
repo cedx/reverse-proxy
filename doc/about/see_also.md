@@ -1,10 +1,10 @@
 # See also
 
 ## Development
-- [API reference](https://dev.belin.io/reverse-proxy.js/api)
+- [API reference](https://dev.belin.io/reverse-proxy/api)
 - [npm package](https://www.npmjs.com/package/@cedx/reverse-proxy)
-- [Nodejitsu HTTP Proxy](https://github.com/nodejitsu/node-http-proxy)
+- [Submit an issue](https://github.com/cedx/reverse-proxy/issues)
 
 ## Testing
-- [Continuous integration](https://travis-ci.com/cedx/reverse-proxy.js)
-- [Code coverage](https://coveralls.io/github/cedx/reverse-proxy.js)
+- [Continuous integration](https://travis-ci.com/cedx/reverse-proxy)
+- [Code coverage](https://coveralls.io/github/cedx/reverse-proxy)

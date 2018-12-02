@@ -1,10 +1,10 @@
-# Reverse-Proxy.js
+# Reverse Proxy
 
 ## Simple reverse proxy server
-Let's suppose you were running multiple HTTP application servers, but you only wanted to expose one machine to the Internet. You could setup **Reverse-Proxy.js** on that one machine and then reverse-proxy the incoming HTTP requests to locally running services which were not exposed to the outside network.
+Let's suppose you were running multiple HTTP application servers, but you only wanted to expose one machine to the Internet. You could setup **Reverse Proxy** on that one machine and then reverse-proxy the incoming HTTP requests to locally running services which were not exposed to the outside network.
 
 !!! info
-    Reverse-Proxy.js is based on the [Nodejitsu HTTP Proxy](https://github.com/nodejitsu/node-http-proxy) project.
+    Reverse Proxy is based on the [Nodejitsu HTTP Proxy](https://github.com/nodejitsu/node-http-proxy) project.
     If you need advanced features not provided by this application, you should consider using the [`http-proxy`](https://www.npmjs.com/package/http-proxy) package directly.
 
 ## Features
@@ -16,7 +16,7 @@ Let's suppose you were running multiple HTTP application servers, but you only w
 - Supports [custom HTTP headers](usage/http_headers.md).
 
 ## Quick start
-Install the latest version of **Reverse-Proxy.js** with [npm](https://www.npmjs.com):
+Install the latest version of **Reverse Proxy** with [npm](https://www.npmjs.com):
 
 ```shell
 npm install --global @cedx/reverse-proxy

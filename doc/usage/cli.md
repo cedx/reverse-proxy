@@ -1,5 +1,5 @@
 # Command line interface
-The **Reverse-Proxy.js** application provides a command line interface:
+The **Reverse Proxy** application provides a command line interface:
 
 ```shell
 reverse-proxy --help

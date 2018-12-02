@@ -1,5 +1,5 @@
 # Configuration schema
-The [`defaults.json`](https://github.com/cedx/reverse-proxy.js/blob/master/example/json/defaults.json) or [`defaults.yaml`](https://github.com/cedx/reverse-proxy.js/blob/master/example/yaml/defaults.yaml) file, in the `example` folder of this package, lists all available settings and their default values.
+The [`defaults.json`](https://github.com/cedx/reverse-proxy/blob/master/example/json/defaults.json) or [`defaults.yaml`](https://github.com/cedx/reverse-proxy/blob/master/example/yaml/defaults.yaml) file, in the `example` folder of this package, lists all available settings and their default values.
 
 > A target server can be expressed in two possible ways in the configuration file:
 > - a string or a number representing an URI: `3000` (a port of the local host), `"domain.com:8080"` (an authority) or `"http://domain.com:8080"` (an origin).
