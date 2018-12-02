@@ -4,16 +4,13 @@
   "description": "Simple reverse proxy server supporting WebSockets.",
   "homepage": "https://dev.belin.io/reverse-proxy",
   "license": "MIT",
-  "main": "./bin/reverse_proxy.js",
   "name": "@cedx/reverse-proxy",
-  "version": "10.0.0",
+  "version": "10.1.0",
   "bin": {
     "reverse-proxy": "./bin/reverse_proxy.js"
   },
   "dependencies": {
-    "commander": "^2.19.0",
-    "http-proxy": "^1.17.0",
-    "js-yaml": "^3.12.0"
+    "http-proxy": "^1.17.0"
   },
   "engines": {
     "node": ">=10.14.0",

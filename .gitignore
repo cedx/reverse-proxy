@@ -14,5 +14,6 @@
 /npm-debug.log
 /package-lock.json
 /pubspec.lock
+/bin/reverse_proxy.js*
 /doc/about/changelog.md
 /doc/about/license.md

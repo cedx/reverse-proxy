@@ -1,14 +1,15 @@
 /.*
 
-/src/
+/build/
+/doc/api/
+/lib/
 /test/
+/tool/
 /var/
 /web/
 
 /*.code-workspace
 /*.iml
-/*.js
 /*.yaml
 /*.yml
-/lib/**/*.map
-/tsconfig.json
+/bin/reverse_proxy.js.*
