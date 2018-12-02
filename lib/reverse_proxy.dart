@@ -6,6 +6,8 @@ import 'package:nodejs_interop/globals.dart';
 import 'src/cli.dart';
 import 'src/version.dart';
 
+export 'src/io.dart';
+
 /// The usage information.
 final String _usage = (StringBuffer()
   ..writeln('Personal reverse proxy server supporting WebSockets, for development.')

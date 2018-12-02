@@ -5,11 +5,15 @@ part of '../cli.dart';
 class Options {
 
   /// Creates a new options object.
-  Options({this.address, this.help, this.port, this.silent, this.version, this.workers});
+  Options({this.address, this.config, this.help, this.port, this.silent, this.target, this.version, this.workers});
 
   /// The address that the reverse proxy should run on.
   @CliOption(abbr: 'a', help: 'Address that the reverse proxy should run on.', defaultsTo: Server.defaultAddress)
   final String address;
+
+  /// The location of the configuration file for the reverse proxy.
+  @CliOption(abbr: 'c', help: 'Location of the configuration file for the reverse proxy.')
+  final String config;
 
   /// Value indicating whether to output usage information.
   @CliOption(abbr: 'h', help: 'Output usage information.', negatable: false)
@@ -22,6 +26,10 @@ class Options {
   /// Value indicating whether to silence the log output.
   @CliOption(help: 'Silence the log output from the reverse proxy.', negatable: false)
   final bool silent;
+
+  /// The location of the server the proxy will target.
+  @CliOption(abbr: 't', help: 'Location of the server the proxy will target.')
+  final String target;
 
   /// Value indicating whether to output the version number.
   @CliOption(abbr: 'v', help: 'Output the version number.', negatable: false)
