@@ -1,5 +1,5 @@
 site_name: Reverse Proxy
-site_description: Simple reverse proxy server supporting WebSockets, implemented in TypeScript.
+site_description: Personal reverse proxy server supporting WebSockets, for development. Based on the Node.js runtime and implemented in Dart.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/reverse-proxy
 
@@ -18,7 +18,7 @@ google_analytics:
 extra:
   social:
   - {type: globe, link: 'https://belin.io'}
-  - {type: github, link: 'https://github.com/cedx'}
+  - {type: git, link: 'https://git.belin.io/cedx'}
   - {type: twitter, link: 'https://twitter.com/cedxbelin'}
   - {type: linkedin, link: 'https://linkedin.com/in/cedxbelin'}
 

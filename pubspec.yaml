@@ -2,7 +2,7 @@ name: reverse_proxy
 version: 1.0.0
 
 author: Cédric Belin <cedric@belin.io>
-description: Simple reverse proxy server supporting WebSockets.
+description: Personal reverse proxy server supporting WebSockets, for development.
 documentation: https://dev.belin.io/reverse-proxy/api
 homepage: https://dev.belin.io/reverse-proxy
 
@@ -15,6 +15,7 @@ executables:
 dependencies:
   build_cli_annotations: ^1.0.1
   nodejs_interop: ^0.10.0
+  where: ^6.0.0
   yaml: ^2.1.15
 
 dependency_overrides:

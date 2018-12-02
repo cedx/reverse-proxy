@@ -37,7 +37,9 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addFlag('version',
       abbr: 'v', help: 'Output the version number.', negatable: false)
   ..addOption('workers',
-      abbr: 'w', help: 'Number of workers processing requests.');
+      abbr: 'w',
+      help: 'Number of workers processing requests.',
+      defaultsTo: '0');
 
 final _$parserForOptions = _$populateOptionsParser(new ArgParser());
 

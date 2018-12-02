@@ -1,4 +1,4 @@
-/// Simple reverse proxy server supporting WebSockets.
+/// Personal reverse proxy server supporting WebSockets, for development.
 library reverse_proxy;
 
 import 'package:nodejs_interop/cluster.dart' as cluster;
@@ -8,7 +8,7 @@ import 'src/version.dart';
 
 /// The usage information.
 final String _usage = (StringBuffer()
-  ..writeln('Simple reverse proxy server supporting WebSockets.')
+  ..writeln('Personal reverse proxy server supporting WebSockets, for development.')
   ..writeln()
   ..writeln('Usage: reverse_proxy [options]')
   ..writeln()

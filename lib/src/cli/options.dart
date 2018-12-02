@@ -28,6 +28,6 @@ class Options {
   final bool version;
 
   /// The number of workers processing requests.
-  @CliOption(abbr: 'w', help: 'Number of workers processing requests.')
+  @CliOption(abbr: 'w', help: 'Number of workers processing requests.', defaultsTo: 0)
   final int workers;
 }

@@ -1,6 +1,6 @@
 # Reverse Proxy
 
-## Simple reverse proxy server
+## Personal reverse proxy server
 Let's suppose you were running multiple HTTP application servers, but you only wanted to expose one machine to the Internet. You could setup **Reverse Proxy** on that one machine and then reverse-proxy the incoming HTTP requests to locally running services which were not exposed to the outside network.
 
 !!! info
