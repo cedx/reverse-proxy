@@ -52,10 +52,8 @@ class Application {
     })];*/
   }
 
-  /// Runs the application with the specified command line arguments.
-  Future<void> run([List<String> args]) async {
-    args ??= process.argv;
-
+  /// Runs the application.
+  Future<void> run() async {
     /*
     if (cluster.isWorker) {
       final worker = Worker();
@@ -72,6 +70,13 @@ class Application {
 
       await _startWorkers();
       process.on('SIGINT', () => end());
+
+
+      cluster.on('exit', (worker, code, signal) => {
+        if (worker.exitedAfterDisconnect === true) {
+          console.log('Oh, it was just voluntary – no need to worry');
+        }
+      });
     }*/
   }
 
