@@ -26,6 +26,12 @@ class Application {
 
   /// Terminates the application with the specified exit [status].
   void end([int status = 0]) {
+    final timers = <int, Timer>{};
+    final workers = asMap(cluster.workers);
+
+    for (final workerId in asMap(cluster.workers).keys) {
+    }
+
     /* TODO
     var timeout: NodeJS.Timer;
     const stopTimer = () {

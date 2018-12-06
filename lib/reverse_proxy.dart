@@ -2,7 +2,7 @@
 library reverse_proxy;
 
 import 'package:nodejs_interop/cluster.dart' as cluster;
-import 'package:nodejs_interop/globals.dart';
+import 'package:nodejs_interop/nodejs.dart';
 import 'src/cli.dart';
 import 'src/version.dart';
 
