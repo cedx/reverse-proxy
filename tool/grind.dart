@@ -4,7 +4,7 @@ import 'package:nodejs_interop/build.dart';
 import 'package:reverse_proxy/src/version.dart';
 
 /// The current environment.
-final String _environment = Platform.environment['NODE_ENV'] ?? const String.fromEnvironment('env', defaultValue: 'development');
+final String _environment = Platform.environment['DART_ENV'] ?? const String.fromEnvironment('env', defaultValue: 'development');
 
 /// Starts the build system.
 Future<void> main(List<String> args) => grind(args);
@@ -44,12 +44,11 @@ void fix() => DartFmt.format(existingSourceDirs, lineLength: 200);
 @Task('Builds the JavaScript sources')
 Future<void> js() async {
   final debug = _environment == 'development' || _environment == 'test';
-  final output = joinFile(binDir, ['reverse_proxy.js']);
+  final outFile = joinFile(binDir, ['reverse_proxy.js']);
 
   Pub.run('build_runner', arguments: ['build', '--delete-conflicting-outputs']);
-  Dart2js.compile(joinFile(libDir, ['reverse_proxy.dart']), minify: !debug, outFile: output);
-  await output.writeAsString('${getPreamble(minified: !debug, shebang: true)}\n${await output.readAsString()}');
-  if (!Platform.isWindows) run('chmod', arguments: ['+x', output.path]);
+  Dart2js.compile(joinFile(libDir, ['reverse_proxy.dart']), extraArgs: debug ? ['-O1'] : ['-O4'], outFile: outFile);
+  return addPreamble(outFile, executable: true, minified: !debug, shebang: true);
 }
 
 @Task('Performs the static analysis of source code')
