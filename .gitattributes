@@ -1,11 +1,13 @@
 * text=auto
 .* text
 
+*.cjs text
 *.cmd text
 *.http text
 *.js text
 *.json text
 *.md text
+*.mjs text
 *.ts text
 *.txt text
 *.yaml text
