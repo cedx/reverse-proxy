@@ -1,4 +1,4 @@
-import chai from 'chai';
+import {strict as assert} from 'assert';
 import {Server} from '../lib/index.js';
 
 /** Tests the features of the {@link Server} class. */
