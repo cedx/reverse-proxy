@@ -11,10 +11,10 @@ You can verify if you're already good to go with the following commands:
 
 ```shell
 node --version
-# v13.11.0
+# v13.12.0
 
 npm --version
-# 6.13.7
+# 6.14.4
 ```
 
 !!! info
