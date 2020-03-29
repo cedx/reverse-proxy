@@ -1,6 +1,6 @@
 root: true
 env:
-  es6: true
+  es2020: true
   mocha: true
   node: true
 extends:
@@ -10,7 +10,6 @@ extends:
   - plugin:@typescript-eslint/recommended-requiring-type-checking
 parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaVersion: 2020
   project: src/tsconfig.json
   sourceType: module
   warnOnUnsupportedTypeScriptVersion: false
