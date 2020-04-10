@@ -4,7 +4,7 @@ site_author: Cédric Belin - cedric@belin.io
 site_url: https://dev.belin.io/reverse-proxy.js
 
 docs_dir: .
-site_dir: ../web
+site_dir: ../www
 
 repo_name: GitHub
 repo_url: https://github.com/cedx/reverse-proxy.js

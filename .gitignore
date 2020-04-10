@@ -5,7 +5,7 @@
 /doc/api/
 /node_modules/
 /var/
-/web/
+/www/
 
 /*.code-workspace
 /*.iml
