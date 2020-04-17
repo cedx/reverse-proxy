@@ -84,7 +84,7 @@ task('default', series('version', 'build'));
  * Spawns a new process using the specified command.
  * @param {string} command The command to run.
  * @param {string[]} args The command arguments.
- * @param {object} options The settings to customize how the process is spawned.
+ * @param {SpawnOptionsWithoutStdio} options The settings to customize how the process is spawned.
  * @return {Promise<void>} Completes when the command is finally terminated.
  */
 function _exec(command, args = [], options = {}) {
