@@ -18,7 +18,7 @@
     "reverse-proxy": "bin/reverse_proxy.js"
   },
   "dependencies": {
-    "commander": "^5.0.0",
+    "commander": "^5.1.0",
     "http-proxy": "^1.18.0",
     "js-yaml": "^3.13.1"
   },
