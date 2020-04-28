@@ -5,9 +5,8 @@ import {promises} from 'fs';
 import {safeLoadAll} from 'js-yaml';
 import {cpus} from 'os';
 import {Writable} from 'stream';
-
-import {Server} from './server';
-import {Worker} from './worker';
+import {Server} from './server.js';
+import {Worker} from './worker.js';
 
 /** The application singleton. */
 let _app: Application;

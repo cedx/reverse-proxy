@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "outDir": "../lib",
     "strict": true,
-    "target": "es2019",
+    "target": "es2020",
     "tsBuildInfoFile": "../var/tsbuild.json"
   }
 }

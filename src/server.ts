@@ -3,7 +3,7 @@ import http from 'http';
 import httpProxy from 'http-proxy';
 import https from 'https';
 import {AddressInfo, Socket} from 'net';
-import {Route, Target} from './route';
+import {Route, Target} from './route.js';
 
 /** Acts as an intermediary for requests from clients seeking resources from other servers. */
 export class Server extends EventEmitter {
@@ -140,7 +140,7 @@ export class Server extends EventEmitter {
     if (!host) return '*';
 
     const index = host.indexOf(':');
-    return index < 0 ? host : host.substring(0, index);
+    return index < 0 ? host : host.slice(0, index);
   }
 
   /**
