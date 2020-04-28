@@ -1,0 +1,6 @@
+version: 2
+mkdocs:
+  configuration: etc/mkdocs.yaml
+python:
+  install:
+    - requirements: etc/requirements.txt

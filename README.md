@@ -6,14 +6,13 @@ Personal reverse proxy server supporting WebSockets, implemented in [TypeScript]
 > This application is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
 
 ## Documentation
-- [User guide](https://dev.belin.io/reverse-proxy.js)
-- [API reference](https://dev.belin.io/reverse-proxy.js/api)
+- [User guide](https://docs.belin.io/reverse-proxy.js)
+- [API reference](https://api.belin.io/reverse-proxy.js)
 
 ## Development
-- [Git repository](https://github.com/cedx/reverse-proxy.js)
-- [GitHub package](https://github.com/cedx/reverse-proxy.js/packages)
+- [Git repository](https://git.belin.io/cedx/reverse-proxy.js)
 - [npm package](https://www.npmjs.com/package/@cedx/reverse-proxy)
-- [Submit an issue](https://github.com/cedx/reverse-proxy.js/issues)
+- [Submit an issue](https://git.belin.io/cedx/reverse-proxy.js/issues)
 
 ## License
-[Reverse-Proxy.js](https://dev.belin.io/reverse-proxy.js) is distributed under the MIT License.
+[Reverse-Proxy.js](https://docs.belin.io/reverse-proxy.js) is distributed under the MIT License.

@@ -25,10 +25,8 @@ task('coverage', () => _exec('coveralls', ['var/lcov.info']));
 
 /** Builds the documentation. */
 task('doc', async () => {
-  for (const path of ['CHANGELOG.md', 'LICENSE.md']) await promises.copyFile(path, `doc/about/${path.toLowerCase()}`);
-  await _exec('typedoc', ['--gaID', process.env.GOOGLE_ANALYTICS_ID, '--options', 'etc/typedoc.json']);
-  await _exec('mkdocs', ['build', '--config-file=doc/mkdocs.yaml']);
-  return del(['doc/about/changelog.md', 'doc/about/license.md', 'www/mkdocs.yaml']);
+  await _exec('typedoc', ['--options', 'etc/typedoc.json']);
+  return _exec('mkdocs', ['build', '--config-file=etc/mkdocs.yaml']);
 });
 
 /** Fixes the coding standards issues. */

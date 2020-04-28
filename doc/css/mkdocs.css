@@ -1,0 +1,35 @@
+/* Variables */
+:root {
+  --link-color: orange;
+  --link-hover-color: gold;
+}
+
+/* Main content */
+.md-typeset a {
+  color: var(--link-color);
+}
+
+.md-typeset a > code {
+  background-color: transparent;
+}
+
+.md-typeset a:focus,
+.md-typeset a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Navigation */
+.md-nav__item .md-nav__link--active {
+  color: var(--link-color);
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__item--active > .md-nav__link {
+    color: var(--link-color);
+  }
+}
+
+.md-nav__item .md-nav__link--active:focus,
+.md-nav__item .md-nav__link--active:hover {
+  color: var(--link-hover-color);
+}

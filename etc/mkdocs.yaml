@@ -1,31 +1,36 @@
 site_name: Reverse-Proxy.js
 site_description: Personal reverse proxy server supporting WebSockets, implemented in JavaScript.
 site_author: Cédric Belin - cedric@belin.io
-site_url: https://dev.belin.io/reverse-proxy.js
+site_url: https://docs.belin.io/reverse-proxy.js
 
-docs_dir: .
+docs_dir: ../doc
 site_dir: ../www
 
-repo_name: GitHub
-repo_url: https://github.com/cedx/reverse-proxy.js
+repo_name: git.belin.io
+repo_url: https://git.belin.io/cedx/reverse-proxy.js
 edit_uri: ''
 
 copyright: Copyright &copy; 2014 - 2020 Cédric Belin
-google_analytics:
-  - !!python/object/apply:os.getenv [GOOGLE_ANALYTICS_ID]
-  - auto
-
 extra:
   social:
-    - {type: globe, link: 'https://belin.io'}
-    - {type: github, link: 'https://github.com/cedx'}
-    - {type: twitter, link: 'https://twitter.com/cedxbelin'}
-    - {type: linkedin, link: 'https://linkedin.com/in/cedxbelin'}
+    - icon: fontawesome/solid/globe
+      link: 'https://belin.io'
+    - icon: fontawesome/brands/github
+      link: 'https://github.com/cedx'
+    - icon: fontawesome/brands/twitter
+      link: 'https://twitter.com/cedxbelin'
+    - icon: fontawesome/brands/linkedin
+      link: 'https://linkedin.com/in/cedxbelin'
+
+extra_css:
+  - css/mkdocs.css
 
 markdown_extensions:
   - admonition
   - codehilite
   - meta
+  - toc:
+      permalink: true
 
 nav:
   - Overview: index.md
@@ -39,11 +44,17 @@ nav:
       - Listening on multiple ports: usage/multiple_ports.md
       - Custom HTTP headers: usage/http_headers.md
   - About:
-      - Changelog: about/changelog.md
       - License: about/license.md
       - See also: about/see_also.md
 
 theme:
-  name: material
   favicon: img/favicon.ico
-  palette: {primary: yellow, accent: yellow}
+  features:
+    - instant
+  icon:
+    logo: fontawesome/solid/book-reader
+    repo: fontawesome/brands/git-alt
+  name: material
+  palette:
+    accent: yellow
+    primary: yellow

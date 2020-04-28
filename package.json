@@ -1,11 +1,10 @@
 {
-  "bugs": "https://github.com/cedx/reverse-proxy.js/issues",
+  "bugs": "https://git.belin.io/cedx/reverse-proxy.js/issues",
   "description": "Personal reverse proxy server supporting WebSockets.",
-  "homepage": "https://dev.belin.io/reverse-proxy.js",
+  "homepage": "https://docs.belin.io/reverse-proxy.js",
   "license": "MIT",
   "main": "lib/index.js",
   "name": "@cedx/reverse-proxy",
-  "repository": "github:cedx/reverse-proxy.js",
   "type": "module",
   "types": "lib/index.d.ts",
   "version": "10.0.0",
@@ -57,6 +56,10 @@
     "server",
     "websocket"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://git.belin.io/cedx/reverse-proxy.js.git"
+  },
   "scripts": {
     "coverage": "gulp coverage",
     "prepack": "gulp",
