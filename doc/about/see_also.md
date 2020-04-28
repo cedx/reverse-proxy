@@ -3,7 +3,6 @@
 ## Development
 - [API reference](https://api.belin.io/reverse-proxy.js)
 - [npm package](https://www.npmjs.com/package/@cedx/reverse-proxy)
-- [Nodejitsu HTTP Proxy](https://github.com/nodejitsu/node-http-proxy)
 - [Submit an issue](https://git.belin.io/cedx/reverse-proxy.js/issues)
 
 ## Testing
