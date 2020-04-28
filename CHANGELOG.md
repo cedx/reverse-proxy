@@ -10,9 +10,9 @@
 - Added support for multithreading: implements the [feature request #7](https://git.belin.io/cedx/reverse-proxy.js/issues/7).
 - Fixed the [issue #6](https://git.belin.io/cedx/reverse-proxy.js/issues/6): wrong executable name in the documentation.
 - Ported the unit tests to classes with experimental decorators.
+- Replaced the [ESDoc](https://esdoc.org) documentation generator by [TypeDoc](https://typedoc.org).
 - Updated the build system to [Gulp](https://gulpjs.com) version 4.
 - Updated the package dependencies.
-- Using the `fs` promises API.
 
 ## Version [9.0.0](https://git.belin.io/cedx/reverse-proxy.js/compare/v8.0.0...v9.0.0)
 - Breaking change: raised the required [Node.js](https://nodejs.org) version.
