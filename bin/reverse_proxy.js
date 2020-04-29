@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-
-const cluster = require('cluster');
-const {Application} = require('../lib/cli/main.js');
+import cluster from 'cluster';
+import {main} from '../lib/cli/main.js';
 
 /**
  * Application entry point.
@@ -15,6 +14,6 @@ async function main() {
 
 // Start the application.
 main().catch(err => {
-  console.error(err);
+  console.error(err.message);
   process.exitCode = 1;
 });
