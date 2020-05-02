@@ -1,7 +1,7 @@
 import {strict as assert} from 'assert';
 import {Route} from '../lib/index.js';
 
-/** Tests the features of the {@link Route} class. */
+/** Tests the features of the `Route` class. */
 describe('Route', () => {
   describe('.from()', () => {
     it('should handle numbers', () => {

@@ -128,7 +128,7 @@ export class Application {
    * Parses the specified configuration data.
    * @param config A string specifying the application configuration.
    * @return The server instances corresponding to the parsed configuration.
-   * @throws [[TypeError]] The specified configuration is invalid.
+   * @throws `TypeError` The specified configuration is invalid.
    */
   private async _parseConfiguration(config: string): Promise<Server[]> {
     const data = config.trim();

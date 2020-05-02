@@ -1,7 +1,7 @@
 import {strict as assert} from 'assert';
 import {Server} from '../lib/index.js';
 
-/** Tests the features of the {@link Server} class. */
+/** Tests the features of the `Server` class. */
 describe('Server', function() {
   this.timeout(15000);
 

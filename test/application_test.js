@@ -1,7 +1,7 @@
 import {strict as assert} from 'assert';
 import {Application, Server} from '../lib/index.js';
 
-/** Tests the features of the {@link Application} class. */
+/** Tests the features of the `Application` class. */
 describe('Application', () => {
   describe('.debug', () => {
     it('should be `false` in production environment', () => {
