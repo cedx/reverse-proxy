@@ -1,2 +1,2 @@
 #!/usr/bin/env pwsh
-& node "$PSScriptRoot/reverse_proxy.js" $args
+node "$PSScriptRoot/reverse_proxy.js" $args
