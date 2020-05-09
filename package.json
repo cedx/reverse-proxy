@@ -31,13 +31,12 @@
     "c8": "^7.1.2",
     "del": "^5.1.0",
     "eslint": "^6.8.0",
-    "gulp": "^4.0.2",
     "mocha": "^7.1.2",
     "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
   },
   "engines": {
-    "node": ">=14.1.0"
+    "node": ">=14.2.0"
   },
   "files": [
     "lib/"
@@ -60,9 +59,8 @@
     "url": "https://git.belin.io/cedx/reverse-proxy.js.git"
   },
   "scripts": {
-    "coverage": "gulp coverage",
-    "prepack": "gulp",
-    "start": "gulp watch",
-    "test": "gulp test"
+    "coverage": "coveralls var/lcov.info",
+    "prepack": "pwsh tool/build.ps1",
+    "test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
   }
 }
