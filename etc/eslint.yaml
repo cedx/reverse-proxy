@@ -1,7 +1,6 @@
 root: true
 env:
   es2020: true
-  mocha: true
   node: true
 extends:
   - eslint:recommended
@@ -16,33 +15,33 @@ parserOptions:
 plugins: ['@typescript-eslint']
 
 rules:
-  no-async-promise-executor: error
+  # Possible errors.
   no-console: [error, {allow: [error, warn]}]
-  no-misleading-character-class: error
-  no-prototype-builtins: error
+  no-extra-semi: 'off'
   no-template-curly-in-string: error
   require-atomic-updates: error
 
+  # Best practices.
+  accessor-pairs: error
   array-callback-return: error
   block-scoped-var: error
   consistent-return: error
   curly: [error, multi]
-  dot-notation: error
+  default-case-last: error
+  grouped-accessor-pairs: error
   no-alert: error
   no-caller: error
   no-case-declarations: 'off'
+  no-constructor-return: error
   no-else-return: error
-  no-empty-function: [error, {allow: [constructors]}]
   no-eval: error
   no-extend-native: error
   no-extra-bind: error
   no-extra-label: error
   no-floating-decimal: error
-  no-global-assign: error
   no-implicit-coercion: error
   no-implicit-globals: error
   no-implied-eval: error
-  no-invalid-this: error
   no-iterator: error
   no-labels: error
   no-lone-blocks: error
@@ -53,8 +52,6 @@ rules:
   no-new-wrappers: error
   no-octal-escape: error
   no-proto: error
-  no-redeclare: [error, {builtinGlobals: true}]
-  no-return-await: error
   no-script-url: error
   no-self-compare: error
   no-sequences: error
@@ -62,47 +59,36 @@ rules:
   no-unmodified-loop-condition: error
   no-useless-call: error
   no-useless-concat: error
-  no-useless-escape: error
   no-useless-return: error
   no-void: error
   no-warning-comments: warn
-  no-with: error
   prefer-promise-reject-errors: error
+  prefer-regex-literals: error
   wrap-iife: [error, inside]
-  yoda: [error, never]
+  yoda: error
 
+  # Strict mode.
   strict: [error, global]
 
+  # Variables.
   no-label-var: error
   no-shadow: error
-  no-shadow-restricted-names: error
   no-undef-init: error
+  no-unused-vars: 'off'
 
-  handle-callback-err: error
-  no-buffer-constructor: error
-  no-mixed-requires: error
-  no-new-require: error
-  no-path-concat: error
-  no-process-exit: error
-  no-sync: error
-
+  # Stylistic issues.
   array-bracket-newline: [error, consistent]
   array-bracket-spacing: error
   block-spacing: error
-  brace-style: [error, stroustrup, {allowSingleLine: true}]
   capitalized-comments: error
   comma-dangle: error
-  comma-spacing: error
   comma-style: error
   computed-property-spacing: error
   consistent-this: [error, self]
   eol-last: error
-  func-call-spacing: 'off'
   func-name-matching: error
   func-style: [error, declaration, {allowArrowFunctions: true}]
-  indent: 'off'
   key-spacing: error
-  keyword-spacing: error
   line-comment-position: error
   lines-between-class-members: error
   max-depth: error
@@ -110,7 +96,6 @@ rules:
   max-nested-callbacks: error
   max-statements-per-line: [error, {max: 3}]
   new-cap: [error, {capIsNew: false}]
-  no-array-constructor: error
   no-lonely-if: error
   no-mixed-operators: error
   no-multiple-empty-lines: error
@@ -122,15 +107,13 @@ rules:
   object-curly-spacing: error
   one-var: [error, never]
   operator-assignment: error
+  prefer-exponentiation-operator: error
   prefer-object-spread: error
   quote-props: [error, as-needed]
-  quotes: [error, single, {avoidEscape: true}]
-  semi: 'off'
   semi-spacing: error
   semi-style: error
   sort-vars: error
   space-before-blocks: error
-  space-before-function-paren: [error, {anonymous: never, asyncArrow: always, named: never}]
   space-in-parens: error
   space-infix-ops: error
   space-unary-ops: [error, {nonwords: false, words: true}]
@@ -139,10 +122,13 @@ rules:
   template-tag-spacing: error
   unicode-bom: error
 
+  # ECMAScript 6.
   arrow-body-style: error
   arrow-parens: [error, as-needed]
   arrow-spacing: error
   generator-star-spacing: error
+  no-confusing-arrow: error
+  no-dupe-class-members: 'off'
   no-duplicate-imports: error
   no-useless-computed-key: error
   no-useless-constructor: 'off'
@@ -161,32 +147,58 @@ rules:
   template-curly-spacing: error
   yield-star-spacing: error
 
+  # TypeScript: supported rules.
   '@typescript-eslint/array-type': [error, {default: array-simple}]
-  '@typescript-eslint/await-thenable': error
+  '@typescript-eslint/camelcase': 'off'
+  '@typescript-eslint/class-literal-property-style': error
   '@typescript-eslint/explicit-function-return-type': [error, {allowExpressions: true}]
   '@typescript-eslint/explicit-member-accessibility': [error, {accessibility: no-public}]
-  '@typescript-eslint/func-call-spacing': error
-  '@typescript-eslint/indent': [error, 2, {SwitchCase: 1}]
   '@typescript-eslint/member-naming': [error, {private: '^_', protected: '^_'}]
   '@typescript-eslint/member-ordering': [error , {default: [public-field, protected-field, private-field, constructor, public-method, protected-method, private-method]}]
+  '@typescript-eslint/method-signature-style': error
+  '@typescript-eslint/no-dynamic-delete': error
+  '@typescript-eslint/no-extraneous-class': error
   '@typescript-eslint/no-explicit-any': 'off'
-  '@typescript-eslint/no-for-in-array': error
-  '@typescript-eslint/no-inferrable-types': 'off'
+  '@typescript-eslint/no-floating-promises': error
+  '@typescript-eslint/no-implied-eval': error
+  '@typescript-eslint/no-inferrable-types': [error, {ignoreParameters: true, ignoreProperties: true}]
+  '@typescript-eslint/no-invalid-void-type': error
   '@typescript-eslint/no-non-null-assertion': 'off'
-  '@typescript-eslint/no-parameter-properties': 'off'
   '@typescript-eslint/no-require-imports': error
-  '@typescript-eslint/no-this-alias': error
+  '@typescript-eslint/no-throw-literal': error
+  '@typescript-eslint/no-unnecessary-boolean-literal-compare': error
+  '@typescript-eslint/no-unnecessary-condition': error
   '@typescript-eslint/no-unnecessary-qualifier': error
-  '@typescript-eslint/no-unnecessary-type-assertion': error
-  '@typescript-eslint/no-use-before-define': [error, {functions: false}]
-  '@typescript-eslint/no-useless-constructor': error
+  '@typescript-eslint/no-unnecessary-type-arguments': error
+  '@typescript-eslint/no-unused-vars-experimental': error
+  '@typescript-eslint/prefer-as-const': error
   '@typescript-eslint/prefer-for-of': error
   '@typescript-eslint/prefer-function-type': error
-  '@typescript-eslint/prefer-includes': error
-  '@typescript-eslint/prefer-string-starts-ends-with': error
+  '@typescript-eslint/prefer-nullish-coalescing': error
+  '@typescript-eslint/prefer-optional-chain': error
+  '@typescript-eslint/prefer-readonly': error
+  '@typescript-eslint/prefer-reduce-type-parameter': error
+  '@typescript-eslint/promise-function-async': error
   '@typescript-eslint/require-array-sort-compare': error
   '@typescript-eslint/restrict-plus-operands': error
-  '@typescript-eslint/semi': error
-  '@typescript-eslint/prefer-regexp-exec': error
+  '@typescript-eslint/switch-exhaustiveness-check': error
   '@typescript-eslint/unbound-method': [error, {ignoreStatic: true}]
   '@typescript-eslint/unified-signatures': error
+
+  # TypeScript: extension rules.
+  '@typescript-eslint/brace-style': [error, stroustrup, {allowSingleLine: true}]
+  '@typescript-eslint/comma-spacing': error
+  '@typescript-eslint/default-param-last': error
+  '@typescript-eslint/dot-notation': error
+  '@typescript-eslint/func-call-spacing': error
+  '@typescript-eslint/indent': [error, 2, {SwitchCase: 1}]
+  '@typescript-eslint/keyword-spacing': error
+  '@typescript-eslint/no-dupe-class-members': error
+  '@typescript-eslint/no-extra-semi': error
+  '@typescript-eslint/no-invalid-this': error
+  '@typescript-eslint/no-use-before-define': [error, nofunc]
+  '@typescript-eslint/no-useless-constructor': error
+  '@typescript-eslint/quotes': [error, single, {avoidEscape: true}]
+  '@typescript-eslint/return-await': error
+  '@typescript-eslint/semi': error
+  '@typescript-eslint/space-before-function-paren': [error, {anonymous: never, asyncArrow: always, named: never}]
