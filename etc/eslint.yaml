@@ -127,7 +127,6 @@ rules:
   arrow-parens: [error, as-needed]
   arrow-spacing: error
   generator-star-spacing: error
-  no-confusing-arrow: error
   no-dupe-class-members: 'off'
   no-duplicate-imports: error
   no-useless-computed-key: error
