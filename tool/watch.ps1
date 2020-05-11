@@ -14,7 +14,7 @@ $watcher = New-Object System.IO.FileSystemWatcher (Resolve-Path src).Path
 $watcher.EnableRaisingEvents = $true
 $watcher.IncludeSubdirectories = $true
 
-foreach ($event in @('Changed', 'Created', 'Deleted', 'Renamed')) {
+foreach ($event in 'Changed', 'Created', 'Deleted', 'Renamed') {
   Register-ObjectEvent $watcher $event -Action $action | Out-Null
 }
 
