@@ -4,10 +4,12 @@ Set-Location (Split-Path $PSScriptRoot)
 [Console]::TreatControlCAsInput = $true
 
 $action = {
-  $changeType = [String] $EventArgs.ChangeType
-  Write-Host "'$($EventArgs.Name)' was $($changeType.ToLower()): starting a new build..."
-  $timeSpan = Measure-Command { tool/build.ps1 }
-  Write-Host "> Finished the build after $($timeSpan.TotalSeconds) seconds."
+  if ($EventArgs.Name -notlike '*.g.ts') {
+    $changeType = [String] $EventArgs.ChangeType
+    Write-Host "'$($EventArgs.Name)' was $($changeType.ToLower()): starting a new build..."
+    $timeSpan = Measure-Command { tool/build.ps1 }
+    Write-Host "> Finished the build after $($timeSpan.TotalSeconds) seconds."
+  }
 }
 
 $watcher = New-Object System.IO.FileSystemWatcher (Resolve-Path src).Path
