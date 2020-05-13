@@ -90,7 +90,6 @@ rules:
   func-style: [error, declaration, {allowArrowFunctions: true}]
   key-spacing: error
   line-comment-position: error
-  lines-between-class-members: error
   max-depth: error
   max-len: [error, {code: 200}]
   max-nested-callbacks: error
@@ -191,6 +190,7 @@ rules:
   '@typescript-eslint/func-call-spacing': error
   '@typescript-eslint/indent': [error, 2, {SwitchCase: 1}]
   '@typescript-eslint/keyword-spacing': error
+  '@typescript-eslint/lines-between-class-members': error
   '@typescript-eslint/no-dupe-class-members': error
   '@typescript-eslint/no-extra-semi': error
   '@typescript-eslint/no-invalid-this': error
