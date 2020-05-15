@@ -1,5 +1,5 @@
 # Reverse-Proxy.js
-![Runtime](https://img.shields.io/node/v/@cedx/reverse-proxy.svg) ![Release](https://img.shields.io/npm/v/@cedx/reverse-proxy.svg) ![License](https://img.shields.io/npm/l/@cedx/reverse-proxy.svg) ![Downloads](https://img.shields.io/npm/dt/@cedx/reverse-proxy.svg) ![Dependencies](https://david-dm.org/cedx/reverse-proxy.js.svg) ![Coverage](https://coveralls.io/repos/github/cedx/reverse-proxy.js/badge.svg) ![Build](https://github.com/cedx/reverse-proxy.js/workflows/build/badge.svg)
+![Runtime](https://img.shields.io/node/v/@cedx/reverse-proxy.svg) ![Release](https://img.shields.io/npm/v/@cedx/reverse-proxy.svg) ![Types](https://badgen.net/npm/types/@cedx/reverse-proxy) ![License](https://img.shields.io/npm/l/@cedx/reverse-proxy.svg) ![Downloads](https://img.shields.io/npm/dt/@cedx/reverse-proxy.svg) ![Dependencies](https://david-dm.org/cedx/reverse-proxy.js.svg) ![Coverage](https://coveralls.io/repos/github/cedx/reverse-proxy.js/badge.svg) ![Build](https://github.com/cedx/reverse-proxy.js/workflows/build/badge.svg)
 
 Personal reverse proxy server supporting WebSockets, implemented in [TypeScript](https://www.typescriptlang.org).
 
