@@ -7,31 +7,31 @@ The value of this key is an object that will be used as the first argument to [`
 Its structure is similar to the `options` parameter of [`tls~createServer()`](http://nodejs.org/api/tls.html#tls_tls_createserver_options_secureconnectionlistener) function.
 
 !!! info
-    The `ca`, `cert`, `key` and `pfx` fields are specified as file paths:
-    the corresponding files are loaded by the [CLI script](cli.md).
+	The `ca`, `cert`, `key` and `pfx` fields are specified as file paths:
+	the corresponding files are loaded by the [CLI script](cli.md).
 
 ## Example
 Proxying HTTPS requests on port `443` to an HTTP server listening at `http://127.0.0.1:3000` :
 
 ### JSON configuration
 
-```json
+``` json
 {
-  "port": 443,
-  "target": 3000,
-  "ssl": {
-    "cert": "/path/to/ssl/cert.file",
-    "key": "/path/to/ssl/key.file"
-  }
+	"port": 443,
+	"target": 3000,
+	"ssl": {
+		"cert": "/path/to/ssl/cert.file",
+		"key": "/path/to/ssl/key.file"
+	}
 }
 ```
 
 ### YAML configuration
 
-```yaml
+``` yaml
 port: 443
 target: 3000
 ssl:
-  cert: "/path/to/ssl/cert.file"
-  key: "/path/to/ssl/key.file"
+	cert: "/path/to/ssl/cert.file"
+	key: "/path/to/ssl/key.file"
 ```

@@ -8,19 +8,23 @@ site_dir: ../www
 
 repo_name: git.belin.io
 repo_url: https://git.belin.io/cedx/reverse-proxy.js
-edit_uri: ''
+edit_uri: ""
 
 copyright: Copyright &copy; 2014 - 2020 Cédric Belin
 extra:
   social:
     - icon: fontawesome/solid/globe
-      link: 'https://belin.io'
+      link: "https://belin.io"
+      name: Belin.io
     - icon: fontawesome/brands/github
-      link: 'https://github.com/cedx'
+      link: "https://github.com/cedx"
+      name: GitHub
     - icon: fontawesome/brands/twitter
-      link: 'https://twitter.com/cedxbelin'
+      link: "https://twitter.com/cedxbelin"
+      name: Twitter
     - icon: fontawesome/brands/linkedin
-      link: 'https://linkedin.com/in/cedxbelin'
+      link: "https://linkedin.com/in/cedxbelin"
+      name: LinkedIn
 
 extra_css:
   - css/mkdocs.css

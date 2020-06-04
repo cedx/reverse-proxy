@@ -1,33 +1,33 @@
 {
-  "address": "0.0.0.0",
-  "port": 8080,
-  "routes": {},
-  "target": null,
+	"address": "0.0.0.0",
+	"port": 8080,
+	"routes": {},
+	"target": null,
 
-  "proxy": {
-    "agent": null,
-    "autoRewrite": false,
-    "changeOrigin": false,
-    "forward": null,
-    "hostRewrite": false,
-    "ignorePath": false,
-    "prependPath": true,
-    "protocolRewrite": null,
-    "secure": true,
-    "ws": false,
-    "xfwd": false
-  },
+	"proxy": {
+		"agent": null,
+		"autoRewrite": false,
+		"changeOrigin": false,
+		"forward": null,
+		"hostRewrite": false,
+		"ignorePath": false,
+		"prependPath": true,
+		"protocolRewrite": null,
+		"secure": true,
+		"ws": false,
+		"xfwd": false
+	},
 
-  "ssl": {
-    "ca": null,
-    "cert": null,
-    "ciphers": null,
-    "handshakeTimeout": 120000,
-    "honorCipherOrder": false,
-    "key": null,
-    "passphrase": null,
-    "pfx": null,
-    "rejectUnauthorized": false,
-    "requestCert": false
-  }
+	"ssl": {
+		"ca": null,
+		"cert": null,
+		"ciphers": null,
+		"handshakeTimeout": 120000,
+		"honorCipherOrder": false,
+		"key": null,
+		"passphrase": null,
+		"pfx": null,
+		"rejectUnauthorized": false,
+		"requestCert": false
+	}
 }

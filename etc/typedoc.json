@@ -1,10 +1,10 @@
 {
-  "excludePrivate": true,
-  "gitRevision": "master",
-  "hideGenerator": true,
-  "mode": "file",
-  "name": "Reverse-Proxy.js",
-  "out": "doc/api",
-  "readme": "none",
-  "tsconfig": "src/tsconfig.json"
+	"excludePrivate": true,
+	"gitRevision": "master",
+	"hideGenerator": true,
+	"mode": "file",
+	"name": "Reverse-Proxy.js",
+	"out": "doc/api",
+	"readme": "none",
+	"tsconfig": "src/tsconfig.json"
 }

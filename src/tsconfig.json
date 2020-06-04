@@ -1,14 +1,14 @@
 {
-  "include": ["**/*.ts"],
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "incremental": true,
-    "module": "es2015",
-    "moduleResolution": "node",
-    "outDir": "../lib",
-    "strict": true,
-    "target": "es2020",
-    "tsBuildInfoFile": "../var/tsbuild.json"
-  }
+	"include": ["**/*.ts"],
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"incremental": true,
+		"module": "es2015",
+		"moduleResolution": "node",
+		"outDir": "../lib",
+		"strict": true,
+		"target": "es2020",
+		"tsBuildInfoFile": "../var/tsbuild.json"
+	}
 }

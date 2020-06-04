@@ -6,26 +6,26 @@ A front server, supporting [HTTPS](using_https.md) and listening on ports `80` a
 
 ### JSON configuration
 
-```json
+``` json
 [
-  {
-    "port": 80,
-    "target": 3000
-  },
-  {
-    "port": 443,
-    "target": 3000,
-    "ssl": {
-      "cert": "/path/to/ssl/cert.file",
-      "key": "/path/to/ssl/key.file"
-    }
-  }
+	{
+		"port": 80,
+		"target": 3000
+	},
+	{
+		"port": 443,
+		"target": 3000,
+		"ssl": {
+			"cert": "/path/to/ssl/cert.file",
+			"key": "/path/to/ssl/key.file"
+		}
+	}
 ]
 ```
 
 ### YAML configuration
 
-```yaml
+``` yaml
 ---
 port: 80
 target: 3000
@@ -33,6 +33,6 @@ target: 3000
 port: 443
 target: 3000
 ssl:
-  cert: "/path/to/ssl/cert.file"
-  key: "/path/to/ssl/key.file"
+	cert: "/path/to/ssl/cert.file"
+	key: "/path/to/ssl/key.file"
 ```

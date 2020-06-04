@@ -6,9 +6,9 @@ A routing table is a simple lookup table that maps incoming requests to proxy ta
 To use hostname routing, you need to provide a `routes` key in your [configuration file](configuration.md), instead of a `target` key. The value of this key is an object where the keys are hostnames and the values are target locations.
 
 !!! tip
-    Unhandled hostnames result in a `404` HTTP error.
-    To override this behavior, use a wildcard character (`*`) as hostname
-    to define the route matched by default when a hostname is not found.
+	Unhandled hostnames result in a `404` HTTP error.
+	To override this behavior, use a wildcard character (`*`) as hostname
+	to define the route matched by default when a hostname is not found.
 
 ## Example
 Enable the hostname routing, using the following mappings:
@@ -19,23 +19,23 @@ Enable the hostname routing, using the following mappings:
 
 ### JSON configuration
 
-```json
+``` json
 {
-  "port": 8080,
-  "routes": {
-    "domain.com": "192.168.0.1",
-    "sub.domain.com": "http://another.host:8080",
-    "*": 3000
-  }
+	"port": 8080,
+	"routes": {
+		"domain.com": "192.168.0.1",
+		"sub.domain.com": "http://another.host:8080",
+		"*": 3000
+	}
 }
 ```
 
 ### YAML configuration
 
-```yaml
+``` yaml
 port: 8080
 routes:
-  domain.com: "192.168.0.1"
-  sub.domain.com: "http://another.host:8080"
-  "*": 3000
+	domain.com: "192.168.0.1"
+	sub.domain.com: "http://another.host:8080"
+	"*": 3000
 ```

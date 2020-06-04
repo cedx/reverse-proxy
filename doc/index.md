@@ -1,12 +1,12 @@
 # Reverse-Proxy.js
-![Runtime](https://img.shields.io/node/v/@cedx/reverse-proxy.svg) ![Release](https://img.shields.io/npm/v/@cedx/reverse-proxy.svg) ![Types](https://badgen.net/npm/types/@cedx/reverse-proxy) ![License](https://img.shields.io/npm/l/@cedx/reverse-proxy.svg) ![Downloads](https://img.shields.io/npm/dt/@cedx/reverse-proxy.svg) ![Dependencies](https://david-dm.org/cedx/reverse-proxy.js.svg) ![Coverage](https://coveralls.io/repos/github/cedx/reverse-proxy.js/badge.svg) ![Build](https://github.com/cedx/reverse-proxy.js/workflows/build/badge.svg)
+![Runtime](https://badgen.net/npm/node/@cedx/reverse-proxy) ![Release](https://badgen.net/npm/v/@cedx/reverse-proxy) ![Types](https://badgen.net/npm/types/@cedx/reverse-proxy) ![License](https://badgen.net/npm/license/@cedx/reverse-proxy) ![Downloads](https://badgen.net/npm/dt/@cedx/reverse-proxy) ![Dependencies](https://badgen.net/david/dep/cedx/reverse-proxy.js) ![Coverage](https://badgen.net/coveralls/c/github/cedx/reverse-proxy.js) ![Build](https://badgen.net/github/checks/cedx/reverse-proxy.js)
 
 ## Personal reverse proxy server
 Let's suppose you were running multiple HTTP application servers, but you only wanted to expose one machine to the Internet. You could setup **Reverse-Proxy.js** on that one machine and then reverse-proxy the incoming HTTP requests to locally running services which were not exposed to the outside network.
 
 !!! info
-    Reverse-Proxy.js is based on the [`node-http-proxy` project](https://github.com/http-party/node-http-proxy).
-    If you need advanced features not provided by this application, you should consider using the [`node-http-proxy` package](https://www.npmjs.com/package/http-proxy) directly.
+	Reverse-Proxy.js is based on the [`node-http-proxy` project](https://github.com/http-party/node-http-proxy).
+	If you need advanced features not provided by this application, you should consider using the [`node-http-proxy` package](https://www.npmjs.com/package/http-proxy) directly.
 
 ## Features
 - [Configuration](usage/configuration.md) based on simple [JSON](https://json.org) or [YAML](http://yaml.org) files.
@@ -19,11 +19,11 @@ Let's suppose you were running multiple HTTP application servers, but you only w
 ## Quick start
 Install the latest version of **Reverse-Proxy.js** with [npm](https://www.npmjs.com):
 
-```shell
+``` shell
 npm install --global @cedx/reverse-proxy
 ```
 
 !!! info
-    This application is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
+	This application is packaged as [ECMAScript modules](https://nodejs.org/api/esm.html).
 
 For detailed instructions, see the [installation guide](installation.md).
