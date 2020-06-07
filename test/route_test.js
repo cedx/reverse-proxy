@@ -2,15 +2,15 @@ import {strict as assert} from "assert";
 import {Route} from "../lib/index.js";
 
 /** Tests the features of the `Route` class. */
-describe("Route", () => {
-	describe(".from()", () => {
-		it("should handle numbers", () => {
+describe("Route", function() {
+	describe(".from()", function() {
+		it("should handle numbers", function() {
 			const route = Route.from(1234);
 			assert.equal(route.uri.href, "http://127.0.0.1:1234");
 			assert.equal(route.headers.size, 0);
 		});
 
-		it("should handle strings", () => {
+		it("should handle strings", function() {
 			let route = Route.from("https://belin.io");
 			assert.equal(route.uri.href, "https://belin.io");
 			assert.equal(route.headers.size, 0);
@@ -20,7 +20,7 @@ describe("Route", () => {
 			assert.equal(route.headers.size, 0);
 		});
 
-		it("should handle `Target` instances", () => {
+		it("should handle `Target` instances", function() {
 			let route = Route.from({
 				headers: {Authorization: "Basic Z29vZHVzZXI6c2VjcmV0cGFzc3dvcmQ="},
 				uri: 1234
