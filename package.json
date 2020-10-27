@@ -14,28 +14,28 @@
 		"url": "https://belin.io"
 	},
 	"bin": {
-		"reverse-proxy": "./bin/reverse_proxy.js"
+		"reverse-proxy": "bin/reverse_proxy.js"
 	},
 	"dependencies": {
-		"commander": "^5.1.0",
+		"commander": "^6.2.0",
 		"http-proxy": "^1.18.1",
 		"js-yaml": "^3.14.0"
 	},
 	"devDependencies": {
 		"@cedx/coveralls": "^10.1.0",
 		"@types/http-proxy": "^1.17.4",
-		"@types/js-yaml": "^3.12.4",
-		"@types/node": "^14.0.19",
-		"@typescript-eslint/eslint-plugin": "^3.6.0",
-		"@typescript-eslint/parser": "^3.6.0",
-		"c8": "^7.1.2",
-		"eslint": "^7.4.0",
-		"mocha": "^8.0.1",
-		"typedoc": "^0.17.7",
-		"typescript": "^3.9.6"
+		"@types/js-yaml": "^3.12.5",
+		"@types/node": "^14.0.14",
+		"@typescript-eslint/eslint-plugin": "^4.6.0",
+		"@typescript-eslint/parser": "^4.6.0",
+		"c8": "^7.2.0",
+		"eslint": "^7.3.1",
+		"mocha": "^8.2.0",
+		"typedoc": "^0.19.2",
+		"typescript": "^4.0.5"
 	},
 	"engines": {
-		"node": ">=14.5.0"
+		"node": ">=14.15.0"
 	},
 	"files": [
 		"lib/"
@@ -45,7 +45,6 @@
 		"url": "https://www.patreon.com/cedx"
 	},
 	"keywords": [
-		"esm",
 		"http",
 		"proxy",
 		"reverse",
@@ -58,8 +57,12 @@
 		"url": "https://git.belin.io/cedx/reverse-proxy.js.git"
 	},
 	"scripts": {
+		"build": "tsc --project src/tsconfig.json",
 		"coverage": "coveralls var/lcov.info",
+		"doc": "typedoc --options etc/typedoc.json",
+		"lint": "eslint --config=etc/eslint.yaml src/**/*.ts",
 		"prepack": "pwsh tool/build.ps1",
+		"prepublishOnly": "npm run clean",
 		"test": "c8 --all --include=lib/**/*.js --report-dir=var --reporter=lcovonly node_modules/.bin/mocha --recursive"
 	}
 }
