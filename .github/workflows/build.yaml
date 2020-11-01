@@ -1,9 +1,7 @@
 name: build
 on:
-  pull_request:
-  push:
-  schedule:
-    - cron: "0 0 1 * *"
+  - pull_request
+  - push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,11 +17,11 @@ jobs:
       - name: Fetch sources
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm install --ignore-scripts
+        run: npm install
       - name: Run tests
-        run: npm test
+        run: npm run test
       - name: Collect code coverage
         env:
           COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
         if: success()
-        run: npm run-script coverage
+        run: npm run coverage
