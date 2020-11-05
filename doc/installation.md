@@ -8,10 +8,10 @@ You can verify if you're already good to go with the following commands:
 
 ``` shell
 node --version
-# v14.5.0
+# v15.1.0
 
 npm --version
-# 6.14.5
+# 7.0.8
 ```
 
 !!! info

@@ -1,5 +1,5 @@
 # Reverse-Proxy.js
-![Runtime](https://badgen.net/npm/node/@cedx/reverse-proxy) ![Release](https://badgen.net/npm/v/@cedx/reverse-proxy) ![Types](https://badgen.net/npm/types/@cedx/reverse-proxy) ![License](https://badgen.net/npm/license/@cedx/reverse-proxy) ![Downloads](https://badgen.net/npm/dt/@cedx/reverse-proxy) ![Dependencies](https://badgen.net/david/dep/cedx/reverse-proxy.js) ![Coverage](https://badgen.net/coveralls/c/github/cedx/reverse-proxy.js) ![Build](https://badgen.net/github/checks/cedx/reverse-proxy.js)
+![Runtime](https://badgen.net/npm/node/@cedx/reverse-proxy) ![Release](https://badgen.net/npm/v/@cedx/reverse-proxy) ![Types](https://badgen.net/npm/types/@cedx/reverse-proxy) ![License](https://badgen.net/npm/license/@cedx/reverse-proxy) ![Downloads](https://badgen.net/npm/dt/@cedx/reverse-proxy) ![Dependencies](https://badgen.net/david/dep/cedx/reverse-proxy.js) ![Coverage](https://badgen.net/coveralls/c/github/cedx/reverse-proxy.js) ![Build](https://badgen.net/github/checks/cedx/reverse-proxy.js/main)
 
 ## Personal reverse proxy server
 Let's suppose you were running multiple HTTP application servers, but you only wanted to expose one machine to the Internet. You could setup **Reverse-Proxy.js** on that one machine and then reverse-proxy the incoming HTTP requests to locally running services which were not exposed to the outside network.
