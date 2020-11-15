@@ -1,6 +1,6 @@
 {
 	"excludePrivate": true,
-	"gitRevision": "master",
+	"gitRevision": "main",
 	"hideGenerator": true,
 	"mode": "file",
 	"name": "Reverse-Proxy.js",
